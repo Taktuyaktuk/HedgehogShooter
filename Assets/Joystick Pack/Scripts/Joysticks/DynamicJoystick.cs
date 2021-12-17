@@ -11,9 +11,6 @@ public class DynamicJoystick : Joystick
     [SerializeField] private float moveThreshold = 1;
 
     
-    
-    
-
 
 
 
@@ -23,6 +20,7 @@ public class DynamicJoystick : Joystick
         base.Start();
         background.gameObject.SetActive(false);
         
+        
             
 
 
@@ -31,8 +29,9 @@ public class DynamicJoystick : Joystick
     public override void OnPointerDown(PointerEventData eventData)
     {
         background.anchoredPosition = ScreenPointToAnchoredPosition(eventData.position);
-        background.gameObject.SetActive(true);
+       background.gameObject.SetActive(true);
         base.OnPointerDown(eventData);
+        
         
     }
 
@@ -40,6 +39,7 @@ public class DynamicJoystick : Joystick
     {
         background.gameObject.SetActive(false);
         base.OnPointerUp(eventData);
+        
         
     }
 
