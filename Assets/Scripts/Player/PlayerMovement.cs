@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Rigidbody _rigidbody;
+    [SerializeField] private DynamicJoystick _joystick;
+
+    [SerializeField] private float _moveSpeed;
+
+
+    private void FixedUpdate()
     {
-        
+        _rigidbody.velocity = new Vector3(_joystick.Horizontal * _moveSpeed, _rigidbody.velocity.y, _joystick.Vertical * _moveSpeed);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
