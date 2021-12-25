@@ -8,7 +8,6 @@ public class JoysticAlphaActivator : MonoBehaviour
     private void OnDisable()
     {
         JoysticSprite.SetActive(true);
-        JoysticSprite.transform.position = this.gameObject.transform.position;
     }
 
     private void OnEnable()
