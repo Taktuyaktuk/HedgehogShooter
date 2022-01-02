@@ -13,39 +13,18 @@ public abstract class EnemyAbstract : MonoBehaviour
     [SerializeField]
     protected float Speed { get; set; }
 
-    public virtual void Attack()
-    {
+    public abstract void Attack();
 
-    }
+    public abstract void GetDamage();
 
-    public virtual void GetDamage()
-    {
+    public abstract void Die();
 
-    }
+    public abstract void Respawn();
 
-    public virtual void Die()
-    {
+    public abstract void Dash();
 
-    }
+    public abstract void Move();
 
-    public virtual void Respawn()
-    {
-
-    }
-
-    public virtual void Dash()
-    {
-
-    }
-
-    public virtual void Move()
-    {
-
-    }
-
-    public virtual void Idle()
-    {
-
-    }
+    public abstract void Idle();
 
 }
