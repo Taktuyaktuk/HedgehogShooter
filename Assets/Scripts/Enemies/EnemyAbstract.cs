@@ -2,17 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAbstract : MonoBehaviour
+public abstract class EnemyAbstract : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]  
+    protected float Damage  { get; set; }
+    [SerializeField]
+    protected   float  HP { get; set; }
+    [SerializeField]
+    protected float Cooldown { get; set; }
+    [SerializeField]
+    protected float Speed { get; set; }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public abstract void Attack();
+
+    public abstract void GetDamage();
+
+    public abstract void Die();
+
+    public abstract void Respawn();
+
+    public abstract void Dash();
+
+    public abstract void Move();
+
+    public abstract void Idle();
+
 }
