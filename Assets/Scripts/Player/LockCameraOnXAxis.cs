@@ -4,7 +4,7 @@ using UnityEngine;
 using Cinemachine;
 
 [ExecuteInEditMode] [SaveDuringPlay] [AddComponentMenu(" ")]
-public class LockCameraZ : CinemachineExtension
+public class LockCameraOnXAxis : CinemachineExtension
 {
     public float CamXPositionLock = 0;
 
