@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0.99999905, b: 0.99999905, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -499,7 +499,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 403932107}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.263446, y: -16.92025, z: -31.499912}
+  m_LocalPosition: {x: 2.25, y: 0.5100002, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 218737540}
@@ -520,13 +520,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a6149a9e870c3943913f20522c9d2fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Damage: 5
-  HP: 100
-  Cooldown: 1
-  Speed: 2
   DodgeRightPoint: {fileID: 0}
   DodgeLeftPoint: {fileID: 0}
   DodgeEndPoint: {fileID: 0}
+  DodgeActive: 0
 --- !u!1 &441188911
 GameObject:
   m_ObjectHideFlags: 0
@@ -788,7 +785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 666720800}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.443446, y: 17.54025, z: 28.069912}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2075517761}
