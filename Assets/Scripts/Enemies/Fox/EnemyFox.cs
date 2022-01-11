@@ -1,13 +1,22 @@
+using Assets.Scripts.Common;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+public enum state
+{
+    start,
+    leftAchiving,
+    rightAchiving,
+    endAchived
+}
 
 public class EnemyFox : EnemyAbstract
 {
-    public float Damage = 5f;
-    public float HP = 100f;
-    public float Cooldown = 1.0f;
-    public float Speed = 2f;
+    public override float Cooldown { get; set; }
+    public override float HP { get; set; } = 100f;
+    public override float Damage { get; set; } = 10f;
+    [SerializeField]
+    public override float Speed { get; set; } = 1f;
+
     private Transform target;
 
     public Transform DodgeRightPoint;
@@ -18,77 +27,142 @@ public class EnemyFox : EnemyAbstract
     private Vector3 lastPosition;
     private Vector3 endPosition;
     
+    private state _moveState;
 
+    Vector3 leftPoint;
+    Vector3 rightPoint;
 
-   
-
-    private void Start()
+    private void Awake()
     {
-        target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        target = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Transform>();
         DodgeActive = false;
+        _moveState = state.leftAchiving;
+
+        leftPoint = new Vector3(transform.position.x, 0, transform.position.z) + Vector3.left + Vector3.forward;
+        rightPoint = new Vector3(transform.position.x, 0, transform.position.z) + Vector3.right + Vector3.forward;
+        
+        Move();
     }
 
     private void Update()
     {
-        Move();
-        Die();
+        //Die();
         if (DodgeActive == true)
         {
             lastPosition = DodgeRightPoint.position;
             endPosition = DodgeEndPoint.position;
         }
         //Invoke("DodgeActivator", 11);
-      
     }
-   
 
     public void DodgeActivator()
     {
         DodgeActive = true;
     }
+
     public override void Attack()
     {
-        
     }
 
     public override void Dash()
     {
-        
     }
 
     public override void Die()
     {
-       if(HP <=0)
+        if (HP <= 0)
         {
-            Destroy(gameObject); 
+            Destroy(gameObject);
         }
     }
 
     public override void GetDamage()
     {
-        
     }
 
     public override void Idle()
     {
-        
     }
 
+    public IEnumerator MoveCoroutine()
+    {
+        //poruszaj sie 
+        transform.Translate(Vector3.forward * Time.deltaTime * Speed);
+        yield return new WaitForSeconds(1f);
+        StartCoroutine(Stop());
+        //zatrzymaj sie na 0.3f
+    }
+    public IEnumerator Stop()
+    {
+
+        yield return new WaitForSeconds(0.3f);
+        StartCoroutine(MoveCoroutine());
+    }
     public override void Move()
     {
-        float dist = Vector3.Distance(target.position, transform.position);
-
+        StartCoroutine(MoveCoroutine());
+        //przeciwnika rusza sie w kierunku gracza,
+        //po 1sek zatrzymuje sie na 0.3sek w miejscu
+        //rusza sie dalej.
         
-       
+
+        //poruszanie sie i zatrzymanie bedzie zrobione na IEnumarotor Courine
+
+
+
+
+        if (_moveState == state.leftAchiving)
+        {
+            transform.Translate(leftPoint * Time.deltaTime * Speed);
+            
+            if(Vector3.Distance(transform.position, leftPoint) < 0.2f)
+            {
+                rightPoint = transform.position + transform.TransformPoint(new Vector3(2, 0, 1.5f));
+                _moveState = state.rightAchiving;
+            }
+        }
+        else
+        {
+            transform.Translate(rightPoint * Time.deltaTime * Speed);
+
+            if (Vector3.Distance(transform.position, rightPoint) < 0.2f)
+            {
+                leftPoint = transform.position + transform.TransformPoint(new Vector3(-2, 0, 1.5f));
+                _moveState = state.leftAchiving;
+            }
+        }
+
+        return;
+        //okresl punkt startu
+        //okresl punkt konca
+        //okresl wartosc w strone gracza + 0.5
+        //okresl lewy point (-1,0,0)
+        //okresl wartosc w strone gracza + 0.5
+        //okresl prawy point (1,0,0)
+
+
+
+        transform.Translate(Vector3.forward * Time.deltaTime * Speed);
+        
+        var rangeXDiagonal = .9f;
+
+        if (transform.position.x < rangeXDiagonal)
+        {
+            transform.Translate(Vector3.left * 8 * Time.deltaTime * Speed);
+        }
+        if (transform.position.x > rangeXDiagonal)
+        {
+            transform.Translate(Vector3.right * 8 * Time.deltaTime * Speed);
+        }
+
+        return;
+        float dist = Vector3.Distance(target.position, transform.position);
 
         if (dist <= 4.5f && dist >= 1.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
             Debug.Log("ok_");
         }
-
-        
-
         else if (dist > 4.5f)
         {
             int random = Random.Range(0, 100);
@@ -99,11 +173,10 @@ public class EnemyFox : EnemyAbstract
                 Debug.Log("wysokiRandom");
                 DodgeActive = true;
             }
+            else
 
-            else 
-               
             {
-              DodgeActive = false;
+                DodgeActive = false;
                 transform.Translate(Vector3.right * (Speed) * Time.deltaTime);
 
                 //transform.position = Vector3.MoveTowards(RandomDirection(), RandomPostion(), Speed * Time.deltaTime);
@@ -119,8 +192,6 @@ public class EnemyFox : EnemyAbstract
                 //    transform.position = Vector3.MoveTowards(RandomDirection(), RandomPostion(), Speed * Time.deltaTime);
                 //}
             }
-                    
-
 
             //if (transform.position != DodgeRightPoint.position)
             //{
@@ -135,19 +206,17 @@ public class EnemyFox : EnemyAbstract
             //    target.di
             //}
         }
-
-
     }
 
     public override void Respawn()
     {
-        
     }
 
     public static Vector3 RandomDirection()
     {
         return new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
     }
+
     private Vector3 RandomPostion()
     {
         return transform.position + RandomDirection() * Random.Range(5f, 5f);

@@ -1,17 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class EnemyAbstract : MonoBehaviour
 {
-    [SerializeField]  
-    protected float Damage  { get; set; }
-    [SerializeField]
-    protected   float  HP { get; set; }
-    [SerializeField]
-    protected float Cooldown { get; set; }
-    [SerializeField]
-    protected float Speed { get; set; }
+    public abstract float Damage { get; set; }
+
+    public abstract float HP { get; set; }
+
+    public abstract float Cooldown { get; set; }
+
+    public abstract float Speed { get; set; }
 
     public abstract void Attack();
 
@@ -26,5 +23,4 @@ public abstract class EnemyAbstract : MonoBehaviour
     public abstract void Move();
 
     public abstract void Idle();
-
 }
