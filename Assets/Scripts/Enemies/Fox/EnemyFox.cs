@@ -23,6 +23,7 @@ public class EnemyFox : EnemyAbstract
     public Transform DodgeLeftPoint;
     public Transform DodgeEndPoint;
     public bool DodgeActive;
+    
 
     private Vector3 lastPosition;
     private Vector3 endPosition;
@@ -40,20 +41,20 @@ public class EnemyFox : EnemyAbstract
 
         //leftPoint = new Vector3(transform.position.x, 0, transform.position.z) + Vector3.left + Vector3.forward;
         //rightPoint = new Vector3(transform.position.x, 0, transform.position.z) + Vector3.right + Vector3.forward;
-        
-        Move();
+
+        StartCoroutine(MoveCoroutine());
     }
 
     private void Update()
     {
         //Die();
-        if (DodgeActive == true)
-        {
-            lastPosition = DodgeRightPoint.position;
-            endPosition = DodgeEndPoint.position;
-        }
+        //if (DodgeActive == true)
+        //{
+        //    lastPosition = DodgeRightPoint.position;
+        //    endPosition = DodgeEndPoint.position;
+        //}
         //Invoke("DodgeActivator", 11);
-        //Move();
+        Move();
         
     }
 
@@ -91,9 +92,13 @@ public class EnemyFox : EnemyAbstract
         //poruszaj sie 
 
         //transform.Translate(Vector3.forward * Time.deltaTime * Speed);
-        
-            transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
-            yield return new WaitForSeconds(3f);
+
+        //transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+        DodgeActive = false;
+        yield return new WaitForSeconds(3f);
+        DodgeActive = true;
+
+
             StopCoroutine(MoveCoroutine());
             StartCoroutine(Stop());
         
@@ -102,17 +107,37 @@ public class EnemyFox : EnemyAbstract
     public IEnumerator Stop()
     {
         
-            print("stop1");
-            yield return new WaitForSeconds(1f);
-            print("stop2");
+            
+            yield return new WaitForSeconds(3f);
+            
             StopCoroutine(Stop());
             StartCoroutine(MoveCoroutine());
         
     }
     public override void Move()
     {
-        StartCoroutine(MoveCoroutine());
-        print("dziala");
+        float dist = Vector3.Distance(target.position, transform.position);
+
+        if(dist >1.5 && dist<4.5)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+        }
+        else if( dist > 4.5)
+        {
+            if (DodgeActive == true)
+            {
+
+            }
+            else if( DodgeActive == false)
+            {
+                 transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+            }
+        }
+
+
+
+        //StartCoroutine(MoveCoroutine());
+        //print("dziala");
         //przeciwnika rusza sie w kierunku gracza,
         //transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
         //po 1sek zatrzymuje sie na 0.3sek w miejscu
@@ -127,7 +152,7 @@ public class EnemyFox : EnemyAbstract
         //if (_moveState == state.leftAchiving)
         //{
         //    transform.Translate(leftPoint * Time.deltaTime * Speed);
-            
+
         //    if(Vector3.Distance(transform.position, leftPoint) < 0.2f)
         //    {
         //        rightPoint = transform.position + transform.TransformPoint(new Vector3(2, 0, 1.5f));
@@ -156,7 +181,7 @@ public class EnemyFox : EnemyAbstract
 
 
         //transform.Translate(Vector3.forward * Time.deltaTime * Speed);
-        
+
         //var rangeXDiagonal = .9f;
 
         //if (transform.position.x < rangeXDiagonal)
@@ -192,32 +217,32 @@ public class EnemyFox : EnemyAbstract
         //        DodgeActive = false;
         //        transform.Translate(Vector3.right * (Speed) * Time.deltaTime);
 
-                //transform.position = Vector3.MoveTowards(RandomDirection(), RandomPostion(), Speed * Time.deltaTime);
-                //Debug.Log("doszedl do PKT1");
-                //if((Vector3.Distance(transform.position, endPosition) <= 1.5f))
-                //{
-                //    Debug.Log("doszedl do PKT2");
-                //    transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
-                //    DodgeActive = false;
-                //}
-                //else
-                //{
-                //    transform.position = Vector3.MoveTowards(RandomDirection(), RandomPostion(), Speed * Time.deltaTime);
-                //}
-            //}
+        //transform.position = Vector3.MoveTowards(RandomDirection(), RandomPostion(), Speed * Time.deltaTime);
+        //Debug.Log("doszedl do PKT1");
+        //if((Vector3.Distance(transform.position, endPosition) <= 1.5f))
+        //{
+        //    Debug.Log("doszedl do PKT2");
+        //    transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+        //    DodgeActive = false;
+        //}
+        //else
+        //{
+        //    transform.position = Vector3.MoveTowards(RandomDirection(), RandomPostion(), Speed * Time.deltaTime);
+        //}
+        //}
 
-            //if (transform.position != DodgeRightPoint.position)
-            //{
-            //    transform.position = Vector3.MoveTowards(transform.position, DodgeRightPoint.position, Speed * Time.deltaTime);
-            //}
-            //else if (rnd == 2)
-            //{
-            //    transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
-            //}
-            //else if (rnd == 3)
-            //{
-            //    target.di
-            //}
+        //if (transform.position != DodgeRightPoint.position)
+        //{
+        //    transform.position = Vector3.MoveTowards(transform.position, DodgeRightPoint.position, Speed * Time.deltaTime);
+        //}
+        //else if (rnd == 2)
+        //{
+        //    transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+        //}
+        //else if (rnd == 3)
+        //{
+        //    target.di
+        //}
         //}
     }
 
