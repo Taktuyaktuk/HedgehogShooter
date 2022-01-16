@@ -14,11 +14,16 @@ public class EnemyFox : EnemyAbstract
 
     public bool DodgeActive;
     public float DmgGet;
+    public float DmgSet;
     public bool HitByPlayer;
+    public bool InAttackRange;
+    public bool DealedDamageToPlayer;
    
     private void Awake()
     {
         HitByPlayer = false;
+        InAttackRange = false;
+        DealedDamageToPlayer = false;
         target = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Transform>();
         StartCoroutine(MoveCoroutine());
     }
@@ -34,6 +39,7 @@ public class EnemyFox : EnemyAbstract
 
     public override void Attack()
     {
+        StartCoroutine(DealDamage());
     }
 
     public override void Dash()
@@ -52,6 +58,7 @@ public class EnemyFox : EnemyAbstract
     {
         
         HP -= DmgGet;
+        StartCoroutine(StopWhenGetDmg());
        
 
     }
@@ -60,32 +67,7 @@ public class EnemyFox : EnemyAbstract
     {
     }
 
-    public IEnumerator MoveCoroutine()
-    {
-        
-        DodgeActive = false;
-        HitByPlayer = false;
-        yield return new WaitForSeconds(3f);
-        DodgeActive = true;
-        StopCoroutine(MoveCoroutine());
-        StartCoroutine(Stop());
-        
-        
-    }
-    public IEnumerator Stop()
-    {
-            yield return new WaitForSeconds(0.5f);
-            
-            StopCoroutine(Stop());
-            StartCoroutine(MoveCoroutine());
-    }
-    public IEnumerator StopWhenGetDmg()
-    {
-        StopCoroutine(Stop());
-        HitByPlayer = true;
-        yield return new WaitForSeconds(0.5f);
-        StartCoroutine(MoveCoroutine());
-    }
+   
     public override void Move()
     {
         float dist = Vector3.Distance(target.position, transform.position);
@@ -109,10 +91,57 @@ public class EnemyFox : EnemyAbstract
         {
 
         }
+        if(dist<2)
+        {
+            InAttackRange = true;
+            Attack();
+        }
+        else if( dist>2)
+        {
+            InAttackRange = false;
+        }
     }
 
     public override void Respawn()
     {
 
+    }
+
+    public IEnumerator MoveCoroutine()
+    {
+        DodgeActive = false;
+        HitByPlayer = false;
+        yield return new WaitForSeconds(3f);
+        DodgeActive = true;
+        StopCoroutine(MoveCoroutine());
+        StartCoroutine(Stop());
+    }
+    public IEnumerator Stop()
+    {
+        yield return new WaitForSeconds(0.5f);
+
+        StopCoroutine(Stop());
+        StartCoroutine(MoveCoroutine());
+    }
+    public IEnumerator StopWhenGetDmg()
+    {
+        StopCoroutine(Stop());
+        HitByPlayer = true;
+        yield return new WaitForSeconds(0.5f);
+        HitByPlayer = false;
+        StartCoroutine(MoveCoroutine());
+        StopCoroutine(StopWhenGetDmg());
+    }
+
+    public IEnumerator DealDamage()
+    {
+        if (InAttackRange == true && DealedDamageToPlayer == false)
+        {
+            DmgSet = Damage;
+            DealedDamageToPlayer = true;
+            yield return new WaitForSeconds(0.5f);
+            DealedDamageToPlayer = false;
+
+        }
     }
 }
