@@ -75,13 +75,15 @@ public class EnemyFox : EnemyAbstract
    
     public override void Move()
     {
+        float minDist = 1.5f;
+        float maxDist = 4.5f;
         float dist = Vector3.Distance(target.position, transform.position);
 
-        if(dist >1.5 && dist<4.5 && HitByPlayer == false)
+        if(dist >minDist && dist<maxDist && HitByPlayer == false)
         {
             agent.SetDestination(target.position);
         }
-        else if( dist > 4.5 && HitByPlayer == false)
+        else if( dist > maxDist && HitByPlayer == false)
         {
             if (DodgeActive == true)
             {
@@ -97,13 +99,13 @@ public class EnemyFox : EnemyAbstract
         {
             agent.isStopped = true;
         }
-        if(dist<1.5)
+        if(dist<minDist)
         {
             agent.isStopped = true;
             InAttackRange = true;
             Attack();
         }
-        else if( dist>1.5 && DodgeActive==false )
+        else if( dist>minDist && DodgeActive==false )
         {
             agent.isStopped = false;
             InAttackRange = false;
@@ -117,25 +119,28 @@ public class EnemyFox : EnemyAbstract
 
     public IEnumerator MoveCoroutine()
     {
+        float delayedTime = 3f;
         DodgeActive = false;
         HitByPlayer = false;
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(delayedTime);
         DodgeActive = true;
         StopCoroutine(MoveCoroutine());
         StartCoroutine(Stop());
     }
     public IEnumerator Stop()
     {
-        yield return new WaitForSeconds(0.5f);
+        float delayedTime = 0.5f;
+        yield return new WaitForSeconds(delayedTime);
 
         StopCoroutine(Stop());
         StartCoroutine(MoveCoroutine());
     }
     public IEnumerator StopWhenGetDmg()
     {
+        float delayedTime = 0.5f;
         StopCoroutine(Stop());
         HitByPlayer = true;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(delayedTime);
         HitByPlayer = false;
         StartCoroutine(MoveCoroutine());
         StopCoroutine(StopWhenGetDmg());
@@ -143,11 +148,12 @@ public class EnemyFox : EnemyAbstract
 
     public IEnumerator DealDamage()
     {
+        float delayedTime = 0.5f;
         if (InAttackRange == true && DealedDamageToPlayer == false)
         {
             DmgSet = Damage;
             DealedDamageToPlayer = true;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(delayedTime);
             DealedDamageToPlayer = false;
 
         }
