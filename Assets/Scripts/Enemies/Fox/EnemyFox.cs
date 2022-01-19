@@ -1,6 +1,7 @@
 using Assets.Scripts.Common;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyFox : EnemyAbstract
 {
@@ -18,6 +19,8 @@ public class EnemyFox : EnemyAbstract
     public bool HitByPlayer;
     public bool InAttackRange;
     public bool DealedDamageToPlayer;
+
+    private NavMeshAgent agent;
    
     private void Awake()
     {
@@ -26,6 +29,8 @@ public class EnemyFox : EnemyAbstract
         DealedDamageToPlayer = false;
         target = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Transform>();
         StartCoroutine(MoveCoroutine());
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Speed;
     }
 
     private void Update()
@@ -74,30 +79,33 @@ public class EnemyFox : EnemyAbstract
 
         if(dist >1.5 && dist<4.5 && HitByPlayer == false)
         {
-            transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+            agent.SetDestination(target.position);
         }
         else if( dist > 4.5 && HitByPlayer == false)
         {
             if (DodgeActive == true)
             {
-
+                agent.isStopped = true;
             }
             else if( DodgeActive == false)
             {
-                 transform.position = Vector3.MoveTowards(transform.position, target.position, Speed * Time.deltaTime);
+                agent.isStopped = false;
+                agent.SetDestination(target.position);
             }
         }
         if(HitByPlayer == true)
         {
-
+            agent.isStopped = true;
         }
-        if(dist<2)
+        if(dist<1.5)
         {
+            agent.isStopped = true;
             InAttackRange = true;
             Attack();
         }
-        else if( dist>2)
+        else if( dist>1.5 && DodgeActive==false )
         {
+            agent.isStopped = false;
             InAttackRange = false;
         }
     }
