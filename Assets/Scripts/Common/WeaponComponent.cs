@@ -1,20 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponComponent : MonoBehaviour
 {
-    ProjectileSystem _projectileSystem;
+    ProjectileSystem m_projectileSystem;
     [SerializeField]
-    float _projectileSpeed;
+    float m_projectileSpeed = 9;
 
     private void Start()
     {
-        _projectileSystem = ProjectileSystem.GetInstance();
+        m_projectileSystem = ProjectileSystem.GetInstance();
     }
 
-    public void FireWeapon(Vector3 _target)
+    public void FireWeapon(Vector3 startPos, Vector3 _target)
     {
-        _projectileSystem.FireProjectile(transform.position, _target, _projectileSpeed);
+        m_projectileSystem.FireProjectile(startPos, _target, m_projectileSpeed);
     }
+
 }

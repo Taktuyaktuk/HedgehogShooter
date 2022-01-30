@@ -46,6 +46,7 @@ public class ProjectileComponent : MonoBehaviour
     {
         yield return new WaitForSeconds(_delay);
         m_isActive = false;
+
         gameObject.SetActive(false);
     }
 
