@@ -9,6 +9,7 @@ public class PlayersProjectileBehaviour : MonoBehaviour, IPooledObject
 
     public void OnObjectSpawn()
     {
-        transform.Translate(Vector3.forward * Time.deltaTime * Speed);
+
+        
     }
 }
