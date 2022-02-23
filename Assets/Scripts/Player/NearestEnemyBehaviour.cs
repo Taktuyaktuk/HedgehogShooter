@@ -9,21 +9,19 @@ public class NearestEnemyBehaviour : MonoBehaviour
     public List<Transform> EnemyList;
     public Transform nearestEnemy { get; set; }
 
+
+    private void OnEnable()
+    {
+        EventManager.DistanceChecker += Nearest;
+    }
+
+    private void OnDisable()
+    {
+        EventManager.DistanceChecker -= Nearest;
+    }
+
     
-
-    private void Awake()
-    {
-
-        Nearest();
-
-    }
-
-    public void Update()
-    {
-        Nearest();
-    }
-
-    private void Nearest()
+    public void Nearest()
     {
         float minimumDsitance = Mathf.Infinity;
 
@@ -39,7 +37,7 @@ public class NearestEnemyBehaviour : MonoBehaviour
                 nearestEnemy = enemy;
             }
         }
-        Debug.Log("Nearest enemy" + nearestEnemy + "; Distance: " + minimumDsitance);
+        
     }
 
 
