@@ -25,6 +25,11 @@ public class EventManager : MonoBehaviour
         {
 
             DistanceChecker();
+            
+        }
+        else
+        {
+            Debug.Log("GhostJoystic not active");
         }
     }
 }

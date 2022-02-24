@@ -2708,7 +2708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9353b4b55d7cd3b4da57880c960505b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GhostJoystick: {fileID: 0}
+  GhostJoystick: {fileID: 1451906038}
 --- !u!1 &1787306015
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,7 +2936,8 @@ GameObject:
   - component: {fileID: 1846740136}
   - component: {fileID: 1846740135}
   - component: {fileID: 1846740139}
-  m_Layer: 0
+  - component: {fileID: 1846740137}
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -3050,6 +3051,19 @@ MonoBehaviour:
   _rigidbody: {fileID: 1846740135}
   _joystick: {fileID: 1714861445}
   _moveSpeed: 5
+--- !u!114 &1846740137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846740130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 617c802f5d64ea240b72339563665f11, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextSpawnTime: 0
 --- !u!114 &1846740139
 MonoBehaviour:
   m_ObjectHideFlags: 0
