@@ -7,35 +7,44 @@ public class ProjectileSpawner : MonoBehaviour
 
     Assets.Scripts.Common.ObjectPool.ObjectPooler objectPooler;
     public float RateOfFire { get; set; } = 1.0f;
-    public float NextSpawnTime;
+    public GameObject GhostJoystick;
+    private bool _isCoroutineExecuting { get; set; } = false;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        objectPooler = Assets.Scripts.Common.ObjectPool.ObjectPooler.Instance;
-        NextSpawnTime = Time.time + RateOfFire;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        if (Time.time > NextSpawnTime)
+        if (GhostJoystick == null)
         {
-            objectPooler.SpawnFromPool("PlayersProjectile", transform.position, Quaternion.identity);
-            NextSpawnTime += RateOfFire;
+            GhostJoystick = GameObject.Find("Ghost Joystic");
         }
     }
 
-    private void FixedUpdate()
-    {
-        //Fire();
-    }
     
-    //IEnumerator Fire()
-    //{
-    //    Debug.Log("projectile Spawned")
-    //        objectPooler.SpawnFromPool("PlayersProjectile", transform.position, Quaternion.identity);
-    //    yield return new WaitForSeconds(RateOfFire);
-       
-    //}
+    void Start()
+    {
+        objectPooler = Assets.Scripts.Common.ObjectPool.ObjectPooler.Instance;
+    }
+
+   
+    void Update()
+    {
+        if (GhostJoystick.activeInHierarchy == true)
+        {
+            StartCoroutine(ExecuteAfterTime());
+        }
+    }
+
+
+    
+    IEnumerator ExecuteAfterTime()
+    {
+        if(_isCoroutineExecuting == true)
+        {
+            yield break;
+        }
+
+        _isCoroutineExecuting = true;
+        objectPooler.SpawnFromPool("PlayersProjectile", transform.position, Quaternion.identity);
+        yield return new WaitForSeconds(RateOfFire);
+        _isCoroutineExecuting = false;
+    }
 }

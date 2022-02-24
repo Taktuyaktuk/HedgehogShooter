@@ -25,8 +25,6 @@ public class NearestEnemyBehaviour : MonoBehaviour
     {
         float minimumDsitance = Mathf.Infinity;
 
-
-
         nearestEnemy = null;
         foreach (Transform enemy in EnemyList)
         {
@@ -36,9 +34,6 @@ public class NearestEnemyBehaviour : MonoBehaviour
                 minimumDsitance = distance;
                 nearestEnemy = enemy;
             }
-        }
-        
+        }   
     }
-
-
 }

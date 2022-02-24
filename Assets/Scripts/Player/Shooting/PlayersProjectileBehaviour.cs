@@ -9,7 +9,6 @@ public class PlayersProjectileBehaviour : MonoBehaviour, IPooledObject
 
     public void OnObjectSpawn()
     {
-
-        
+   
     }
 }

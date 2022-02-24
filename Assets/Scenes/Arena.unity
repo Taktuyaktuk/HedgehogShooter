@@ -3063,7 +3063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617c802f5d64ea240b72339563665f11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextSpawnTime: 0
+  GhostJoystick: {fileID: 1451906038}
 --- !u!114 &1846740139
 MonoBehaviour:
   m_ObjectHideFlags: 0

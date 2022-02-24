@@ -23,13 +23,7 @@ public class EventManager : MonoBehaviour
     {
         if (GhostJoystick.activeInHierarchy == true)
         {
-
-            DistanceChecker();
-            
-        }
-        else
-        {
-            Debug.Log("GhostJoystic not active");
+            DistanceChecker();  
         }
     }
 }

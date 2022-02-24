@@ -38,7 +38,7 @@ namespace Assets.Scripts.Common.ObjectPool
                 for (int i = 0; i < pool.Size; i++)
                 {
                     var obj = Instantiate(pool.Prefab);
-                    obj.SetActive(false); // dopisałem żeby się odrazu nie załączał projectile
+                    obj.SetActive(false);
                     poolQueue.Enqueue(obj);
                 }
                 
