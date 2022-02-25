@@ -7,7 +7,7 @@ public class NearestEnemyBehaviour : MonoBehaviour
     
 
     public List<Transform> EnemyList;
-    public Transform nearestEnemy { get; set; }
+    public Transform NearestEnemy { get; set; }
 
 
     private void OnEnable()
@@ -25,14 +25,14 @@ public class NearestEnemyBehaviour : MonoBehaviour
     {
         float minimumDsitance = Mathf.Infinity;
 
-        nearestEnemy = null;
+        NearestEnemy = null;
         foreach (Transform enemy in EnemyList)
         {
             float distance = Vector3.Distance(transform.position, enemy.position);
             if (distance < minimumDsitance)
             {
                 minimumDsitance = distance;
-                nearestEnemy = enemy;
+                NearestEnemy = enemy;
             }
         }   
     }

@@ -40,6 +40,7 @@ namespace Assets.Scripts.Common.ObjectPool
                     var obj = Instantiate(pool.Prefab);
                     obj.SetActive(false);
                     poolQueue.Enqueue(obj);
+                    obj.transform.SetParent(transform);
                 }
                 
                 _poolDictionary.Add(pool.Tag, poolQueue);

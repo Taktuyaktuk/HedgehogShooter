@@ -5,14 +5,14 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float ProjectileSpeed = 100;
-    public Vector3 target;
+    public Vector3 Target;
 
     Rigidbody rigidbody;
     public GameObject Player;
 
 
     
-    NearestEnemyBehaviour near;
+    NearestEnemyBehaviour Near;
 
     private void Awake()
     {
@@ -24,9 +24,9 @@ public class Projectile : MonoBehaviour
     {
         Physics.IgnoreLayerCollision(6, 7);
         Player = GameObject.Find("Player");
-        near = Player.GetComponent<NearestEnemyBehaviour>();
-        target = (near.nearestEnemy.transform.position - transform.position).normalized;
-        rigidbody.AddForce(target * ProjectileSpeed);
+        Near = Player.GetComponent<NearestEnemyBehaviour>();
+        Target = (Near.NearestEnemy.transform.position - transform.position).normalized;
+        rigidbody.AddForce(Target * ProjectileSpeed);
         Destroy(this.gameObject, 4f);
     }
 }
