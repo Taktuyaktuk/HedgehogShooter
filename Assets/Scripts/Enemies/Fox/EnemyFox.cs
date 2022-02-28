@@ -15,7 +15,7 @@ public class EnemyFox : EnemyAbstract
 
     public bool DodgeActive;
     public float DmgGet;
-    public float DmgSet;
+    public float DmgSet = 10;
     public bool HitByPlayer;
     public bool InAttackRange;
     public bool DealedDamageToPlayer;
@@ -36,6 +36,14 @@ public class EnemyFox : EnemyAbstract
     private void Update()
     {
         
+        if(InAttackRange)
+        {
+            StartCoroutine(DealDamage());
+        }
+        else
+        {
+            StopCoroutine(DealDamage());
+        }
         Move();
         
     }
@@ -153,6 +161,7 @@ public class EnemyFox : EnemyAbstract
         {
             DmgSet = Damage;
             DealedDamageToPlayer = true;
+            target.GetComponent<PlayerStats>().HP -= DmgSet;
             yield return new WaitForSeconds(delayedTime);
             DealedDamageToPlayer = false;
 

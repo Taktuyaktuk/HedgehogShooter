@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 403932113}
   m_Layer: 0
   m_Name: Mock enemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -739,6 +739,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Pools:
   - Tag: PlayersProjectile
+    Prefab: {fileID: 1795190130135979721, guid: e8b7c6bfe0f827248a0147b75904be54, type: 3}
+    Size: 100
+  - Tag: MeleAtack
     Prefab: {fileID: 1795190130135979721, guid: e8b7c6bfe0f827248a0147b75904be54, type: 3}
     Size: 100
 --- !u!1 &600369952
@@ -1634,11 +1637,11 @@ GameObject:
   - component: {fileID: 1180130039}
   m_Layer: 0
   m_Name: Mock enemy2
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1180130039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2372,7 +2375,7 @@ GameObject:
   - component: {fileID: 1696665698}
   m_Layer: 0
   m_Name: Mock enemy4
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2937,6 +2940,7 @@ GameObject:
   - component: {fileID: 1846740135}
   - component: {fileID: 1846740139}
   - component: {fileID: 1846740137}
+  - component: {fileID: 1846740138}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -3064,6 +3068,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GhostJoystick: {fileID: 1451906038}
+--- !u!114 &1846740138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1846740130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8795e1ff408cdf243b4a9e91d23d1295, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HP: 100
 --- !u!114 &1846740139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3077,8 +3094,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyList:
-  - {fileID: 2075517761}
-  - {fileID: 1180130042}
   - {fileID: 403932111}
   - {fileID: 1696665697}
 --- !u!1 &1896684547
@@ -3413,11 +3428,11 @@ GameObject:
   - component: {fileID: 2075517758}
   m_Layer: 0
   m_Name: Mock enemy1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &2075517758
 BoxCollider:
   m_ObjectHideFlags: 0

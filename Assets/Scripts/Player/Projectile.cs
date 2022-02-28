@@ -29,4 +29,14 @@ public class Projectile : MonoBehaviour
         rigidbody.AddForce(Target * ProjectileSpeed);
         Destroy(this.gameObject, 4f);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        
+        if(collision.transform.tag == "Enemy")
+        {
+            collision.gameObject.GetComponent<EnemyFox>().DmgGet = Player.GetComponent<PlayerStats>().AttackPower;
+        }
+        Destroy(gameObject);
+    }
 }
