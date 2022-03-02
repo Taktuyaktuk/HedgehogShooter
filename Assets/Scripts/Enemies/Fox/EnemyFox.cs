@@ -21,6 +21,7 @@ public class EnemyFox : EnemyAbstract
     public bool DealedDamageToPlayer;
 
     private NavMeshAgent agent;
+
    
     private void Awake()
     {
@@ -35,8 +36,7 @@ public class EnemyFox : EnemyAbstract
 
     private void Update()
     {
-        
-        if(InAttackRange)
+        if (InAttackRange)
         {
             StartCoroutine(DealDamage());
         }
@@ -45,11 +45,10 @@ public class EnemyFox : EnemyAbstract
             StopCoroutine(DealDamage());
         }
         Move();
-        
+        Die();  
     }
 
     
-
     public override void Attack()
     {
         StartCoroutine(DealDamage());
@@ -68,14 +67,12 @@ public class EnemyFox : EnemyAbstract
     }
 
     public override void GetDamage()
-    {
-        
-        HP -= DmgGet;
-        StartCoroutine(StopWhenGetDmg());
-       
-
+    { 
+        //HP -= DmgGet;
+        //StartCoroutine(StopWhenGetDmg());
+        //Debug.Log("Pozosta³o HP " + HP) ;
     }
-
+    
     public override void Idle()
     {
     }
@@ -164,7 +161,6 @@ public class EnemyFox : EnemyAbstract
             target.GetComponent<PlayerStats>().HP -= DmgSet;
             yield return new WaitForSeconds(delayedTime);
             DealedDamageToPlayer = false;
-
-        }
+        } 
     }
 }

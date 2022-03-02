@@ -8,6 +8,7 @@ public class ProjectileSpawner : MonoBehaviour
     Assets.Scripts.Common.ObjectPool.ObjectPooler objectPooler;
     public float RateOfFire { get; set; } = 1.0f;
     public GameObject GhostJoystick;
+    private List<Transform> _projectile;
     private bool _isCoroutineExecuting { get; set; } = false;
 
     private void Awake()
@@ -16,6 +17,7 @@ public class ProjectileSpawner : MonoBehaviour
         {
             GhostJoystick = GameObject.Find("Ghost Joystic");
         }
+       _projectile = this.transform.gameObject.GetComponent<NearestEnemyBehaviour>().EnemyList;
     }
 
     
@@ -27,7 +29,7 @@ public class ProjectileSpawner : MonoBehaviour
    
     void Update()
     {
-        if (GhostJoystick.activeInHierarchy == true)
+        if (GhostJoystick.activeInHierarchy == true &&  _projectile.Count > 0)
         {
             StartCoroutine(ExecuteAfterTime());
         }

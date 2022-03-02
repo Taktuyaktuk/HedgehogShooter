@@ -9,6 +9,36 @@ public class NearestEnemyBehaviour : MonoBehaviour
     public List<Transform> EnemyList;
     public Transform NearestEnemy { get; set; }
 
+    public int ActiveEnemy;/*{ get; set; }*/
+
+
+    private void Awake()
+    {
+        GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+        foreach(var enemy in ListOfEnemy)
+        {
+            EnemyList.Add(enemy.transform);
+            ActiveEnemy++;
+        }
+    }
+
+    private void Update()
+    {
+        GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+        if ( ActiveEnemy != ListOfEnemy.Length)
+        {
+            ActiveEnemy = 0;
+            EnemyList.Clear();
+            foreach (var enemy in ListOfEnemy)
+            {
+                EnemyList.Add(enemy.transform);
+                ActiveEnemy++;
+            }
+        }
+    }
+
+
+
 
     private void OnEnable()
     {
@@ -23,17 +53,27 @@ public class NearestEnemyBehaviour : MonoBehaviour
     
     public void Nearest()
     {
-        float minimumDsitance = Mathf.Infinity;
-
-        NearestEnemy = null;
-        foreach (Transform enemy in EnemyList)
+        if (EnemyList.Count > 0)
         {
-            float distance = Vector3.Distance(transform.position, enemy.position);
-            if (distance < minimumDsitance)
+            float minimumDsitance = Mathf.Infinity;
+
+            NearestEnemy = null;
+            foreach (Transform enemy in EnemyList)
             {
-                minimumDsitance = distance;
-                NearestEnemy = enemy;
+                if (enemy != null)
+                {
+                    float distance = Vector3.Distance(transform.position, enemy.position);
+                    if (distance < minimumDsitance)
+                    {
+                        minimumDsitance = distance;
+                        NearestEnemy = enemy;
+                    }
+                }
+                else
+                {
+                    continue;
+                }
             }
-        }   
+        }
     }
 }

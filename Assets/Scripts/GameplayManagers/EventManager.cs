@@ -12,7 +12,6 @@ public class EventManager : MonoBehaviour
 
     private void Awake()
     {
-        
         if (GhostJoystick == null)
         {
             GhostJoystick = GameObject.Find("Ghost Joystic");
