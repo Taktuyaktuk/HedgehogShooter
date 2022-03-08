@@ -38,6 +38,10 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyFox>().HP -= Player.GetComponent<PlayerStats>().AttackPower;
         }
+       if ( collision.transform.tag == "RangeEnemy1")
+        {
+            collision.gameObject.GetComponent<EnemyRange1>().HP -= Player.GetComponent<PlayerStats>().AttackPower;
+        }
         Destroy(gameObject);
     }
 }

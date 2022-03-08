@@ -5,9 +5,14 @@ using UnityEngine;
 public class EnemyRange1ProjectileSpawner : MonoBehaviour
 {
     Assets.Scripts.Common.ObjectPool.ObjectPooler objectPooler;
-    public float RateOfFire { get; set; } = 1.0f;
+    public float RateOfFire { get; set; } = 2.0f;
     private bool _isCoroutineExecuting { get; set; } = false;
+    public GameObject Enemy;
 
+    private void Awake()
+    {
+        Enemy = GameObject.FindGameObjectWithTag("RangeEnemy1");
+    }
 
     void Start()
     {
@@ -16,17 +21,18 @@ public class EnemyRange1ProjectileSpawner : MonoBehaviour
 
     void Update()
     {
-        ExecuteAfterTime();
+        StartCoroutine(ExecuteAfterTime());
     }
-    IEnumerator ExecuteAfterTime()
+    private IEnumerator ExecuteAfterTime()
     {
+       
         if (_isCoroutineExecuting == true)
         {
             yield break;
         }
 
         _isCoroutineExecuting = true;
-        objectPooler.SpawnFromPool("RangeEnemy1Projectile", transform.position, Quaternion.identity);
+        objectPooler.SpawnFromPool("RangeEnemy1Projectile", Enemy.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(RateOfFire);
         _isCoroutineExecuting = false;
     }

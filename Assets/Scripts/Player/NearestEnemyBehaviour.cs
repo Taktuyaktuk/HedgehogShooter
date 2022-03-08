@@ -10,36 +10,56 @@ public class NearestEnemyBehaviour : MonoBehaviour
     public Transform NearestEnemy { get; set; }
 
     public int ActiveEnemy;/*{ get; set; }*/
+    public GameObject Enemies;
 
 
     private void Awake()
     {
-        GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-        foreach(var enemy in ListOfEnemy)
+        Enemies = GameObject.Find("---------Enemies---------");
+
+        int enemy = Enemies.transform.childCount;
+        for(int i =0; i < enemy; i++)
         {
-            EnemyList.Add(enemy.transform);
+            Transform child = Enemies.transform.GetChild(i);
+            EnemyList.Add(child);
             ActiveEnemy++;
         }
+
+        //GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+        //foreach(var enemy in ListOfEnemy)
+        //{
+        //    EnemyList.Add(enemy.transform);
+        //    ActiveEnemy++;
+        //}
     }
 
     private void Update()
     {
-        GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-        if ( ActiveEnemy != ListOfEnemy.Length)
-        {
+        //if (ActiveEnemy != EnemyList.Count)
+        //{
             ActiveEnemy = 0;
             EnemyList.Clear();
-            foreach (var enemy in ListOfEnemy)
+            int enemy = Enemies.transform.childCount;
+            for(int i =0; i < enemy; i++ )
             {
-                EnemyList.Add(enemy.transform);
-                ActiveEnemy++;
+                Transform child = Enemies.transform.GetChild(i);
+            EnemyList.Add(child);
+            ActiveEnemy++;
             }
-        }
+        //}
+
+        //GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
+        //if ( ActiveEnemy != ListOfEnemy.Length)
+        //{
+        //    ActiveEnemy = 0;
+        //    EnemyList.Clear();
+        //    foreach (var enemy in ListOfEnemy)
+        //    {
+        //        EnemyList.Add(enemy.transform);
+        //        ActiveEnemy++;
+        //    }
+        //}
     }
-
-
-
-
     private void OnEnable()
     {
         EventManager.DistanceChecker += Nearest;

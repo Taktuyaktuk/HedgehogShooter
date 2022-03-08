@@ -367,7 +367,7 @@ GameObject:
   - component: {fileID: 272522999}
   - component: {fileID: 272522998}
   - component: {fileID: 272522997}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mock enemy2
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -637,7 +637,7 @@ GameObject:
   - component: {fileID: 403932108}
   - component: {fileID: 403932112}
   - component: {fileID: 403932113}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mock enemy3
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1178,7 +1178,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 666720801}
-  - component: {fileID: 666720802}
   m_Layer: 0
   m_Name: ---------Enemies---------
   m_TagString: EnemyList
@@ -1205,19 +1204,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &666720802
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 666720800}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23c24c14170b12c49aab5ebc4ca54974, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  List1: {fileID: 0}
 --- !u!1 &733992079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1693,7 +1679,7 @@ GameObject:
   - component: {fileID: 886223780}
   - component: {fileID: 886223779}
   - component: {fileID: 886223778}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mock enemy1
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2567,7 +2553,7 @@ GameObject:
   - component: {fileID: 1696665700}
   - component: {fileID: 1696665699}
   - component: {fileID: 1696665698}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mock enemy4
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -3055,7 +3041,7 @@ GameObject:
   - component: {fileID: 1804047593}
   - component: {fileID: 1804047598}
   - component: {fileID: 1804047599}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Range enemy1
   m_TagString: RangeEnemy1
   m_Icon: {fileID: 0}
@@ -3206,6 +3192,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da89e4407eb74774281ef4975f360c44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Enemy: {fileID: 0}
 --- !u!1 &1807500547
 GameObject:
   m_ObjectHideFlags: 0
@@ -3456,6 +3443,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyList: []
   ActiveEnemy: 0
+  Enemies: {fileID: 0}
 --- !u!1 &1896684547
 GameObject:
   m_ObjectHideFlags: 0

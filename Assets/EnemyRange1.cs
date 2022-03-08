@@ -31,6 +31,7 @@ public class EnemyRange1 : EnemyAbstract
     private void Update()
     {
         Move();
+        Die();
     }
 
     public override void Attack()
