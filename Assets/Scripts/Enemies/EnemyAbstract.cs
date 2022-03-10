@@ -12,7 +12,7 @@ public abstract class EnemyAbstract : MonoBehaviour
 
     public abstract void Attack();
 
-    public abstract void GetDamage();
+    public abstract void GetDamage(float damage);
 
     public abstract void Die();
 

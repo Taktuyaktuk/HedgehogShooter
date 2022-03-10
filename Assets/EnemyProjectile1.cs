@@ -9,16 +9,16 @@ public class EnemyProjectile1 : MonoBehaviour
     public GameObject Player;
     public GameObject RangeEnemy1;
     Rigidbody rigidbody;
+    public PlayerStats playerStats;
+    private float _enemyDamage;
 
     private void Awake()
     {
-        
-        Player = GameObject.Find("Player");
-        rigidbody = this.GetComponent<Rigidbody>();
-        
+        rigidbody = this.GetComponent<Rigidbody>();     
     }
     private void Start()
     {
+        
         Physics.IgnoreLayerCollision(9, 8);
         Physics.IgnoreLayerCollision(7, 9);
 
@@ -30,6 +30,12 @@ public class EnemyProjectile1 : MonoBehaviour
         {
             RangeEnemy1 = GameObject.Find("Range enemy1");
         }
+        if(playerStats == null)
+        {
+            playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        }
+
+        _enemyDamage = RangeEnemy1.GetComponent<EnemyRange1>().Damage;
         TargetPlayer = (Player.transform.position - this.transform.position).normalized;
         rigidbody.AddForce(TargetPlayer * ProjectileSpeed);
         Destroy(this.gameObject, 4f);
@@ -39,7 +45,7 @@ public class EnemyProjectile1 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.GetComponent<PlayerStats>().HP -= RangeEnemy1.GetComponent<EnemyRange1>().Damage;
+            playerStats.GetDamage (_enemyDamage);
             Destroy(this.gameObject);
         }
         Destroy(this.gameObject);

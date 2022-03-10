@@ -5,10 +5,12 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float ProjectileSpeed = 100;
+    public float DamageDone;
     public Vector3 Target;
     public GameObject Player;
     Rigidbody rigidbody;
     NearestEnemyBehaviour Near;
+    public EnemyFox enemyFox;
 
     private void Awake()
     {
@@ -27,8 +29,12 @@ public class Projectile : MonoBehaviour
         {
 
         }
+        DamageDone = Player.GetComponent<PlayerStats>().AttackPower;
+
         rigidbody.AddForce(Target * ProjectileSpeed);
         Destroy(this.gameObject, 4f);
+
+       
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -36,11 +42,11 @@ public class Projectile : MonoBehaviour
 
         if (collision.transform.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyFox>().HP -= Player.GetComponent<PlayerStats>().AttackPower;
+            collision.gameObject.GetComponent<EnemyFox>().GetDamage(DamageDone);
         }
-       if ( collision.transform.tag == "RangeEnemy1")
+        if ( collision.transform.tag == "RangeEnemy1")
         {
-            collision.gameObject.GetComponent<EnemyRange1>().HP -= Player.GetComponent<PlayerStats>().AttackPower;
+            collision.gameObject.GetComponent<EnemyRange1>().GetDamage(DamageDone);
         }
         Destroy(gameObject);
     }

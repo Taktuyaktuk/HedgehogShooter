@@ -8,7 +8,6 @@ public class EnemyFox : EnemyAbstract
     public override float Cooldown { get; set; }
     public override float HP { get; set; } = 100f;
     public override float Damage { get; set; } = 10f;
-    [SerializeField]
     public override float Speed { get; set; } = 1f;
 
     private Transform _targetPlayer;
@@ -19,12 +18,18 @@ public class EnemyFox : EnemyAbstract
     public bool HitByPlayer;
     public bool InAttackRange;
     public bool DealedDamageToPlayer;
+    public PlayerStats playerStats;
 
     private NavMeshAgent agent;
 
    
     private void Awake()
     {
+        if(playerStats == null)
+        {
+            playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        }
+
         HitByPlayer = false;
         InAttackRange = false;
         DealedDamageToPlayer = false;
@@ -66,13 +71,12 @@ public class EnemyFox : EnemyAbstract
         }
     }
 
-    public override void GetDamage()
-    { 
-        //HP -= DmgGet;
-        //StartCoroutine(StopWhenGetDmg());
-        //Debug.Log("Pozosta³o HP " + HP) ;
+    public override void GetDamage(float damage)
+    {
+        HP -= damage;
+        StartCoroutine(StopWhenGetDmg());
     }
-    
+
     public override void Idle()
     {
     }
@@ -158,7 +162,7 @@ public class EnemyFox : EnemyAbstract
         {
             DmgSet = Damage;
             DealedDamageToPlayer = true;
-            _targetPlayer.GetComponent<PlayerStats>().HP -= DmgSet;
+            playerStats.GetDamage(DmgSet);
             yield return new WaitForSeconds(delayedTime);
             DealedDamageToPlayer = false;
         } 

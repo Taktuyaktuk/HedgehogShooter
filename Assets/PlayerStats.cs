@@ -19,4 +19,9 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
+    public void GetDamage(float damage)
+    {
+        HP -= damage;
+    }
+
 }
