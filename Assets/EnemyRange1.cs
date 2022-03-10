@@ -15,7 +15,6 @@ public class EnemyRange1 : EnemyAbstract
 
     public bool DodgeActive;
     public float DmgGet;
-    public float DmgSet = 10;
     public bool HitByPlayer;
     public bool Attacking;
     
@@ -52,9 +51,9 @@ public class EnemyRange1 : EnemyAbstract
         }
     }
 
-    public override void GetDamage()
+    public override void GetDamage(float damage)
     {
-       
+        HP -= damage;
     }
 
     public override void Idle()
@@ -64,8 +63,6 @@ public class EnemyRange1 : EnemyAbstract
 
     public override void Move()
     {
-
-        float minDist = 4.5f;
         float maxDist = 8f;
         float dist = Vector3.Distance(_targetPlayer.position, transform.position);
 
@@ -82,10 +79,7 @@ public class EnemyRange1 : EnemyAbstract
         {
             agent.isStopped = true;
         }
-        if (dist > maxDist)
-        {
-            Attack();
-        }
+       
         else if (dist > maxDist)
         {
             agent.isStopped = false;
