@@ -11,23 +11,24 @@ public class EnemyFox : EnemyAbstract
     [SerializeField]
     public override float Speed { get; set; } = 1f;
 
-    private Transform target;
+    private Transform _targetPlayer;
 
     public bool DodgeActive;
     public float DmgGet;
-    public float DmgSet;
+    public float DmgSet = 10;
     public bool HitByPlayer;
     public bool InAttackRange;
     public bool DealedDamageToPlayer;
 
     private NavMeshAgent agent;
+
    
     private void Awake()
     {
         HitByPlayer = false;
         InAttackRange = false;
         DealedDamageToPlayer = false;
-        target = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Transform>();
+        _targetPlayer = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Transform>();
         StartCoroutine(MoveCoroutine());
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Speed;
@@ -35,13 +36,19 @@ public class EnemyFox : EnemyAbstract
 
     private void Update()
     {
-        
+        if (InAttackRange)
+        {
+            StartCoroutine(DealDamage());
+        }
+        else
+        {
+            StopCoroutine(DealDamage());
+        }
         Move();
-        
+        Die();  
     }
 
     
-
     public override void Attack()
     {
         StartCoroutine(DealDamage());
@@ -60,14 +67,12 @@ public class EnemyFox : EnemyAbstract
     }
 
     public override void GetDamage()
-    {
-        
-        HP -= DmgGet;
-        StartCoroutine(StopWhenGetDmg());
-       
-
+    { 
+        //HP -= DmgGet;
+        //StartCoroutine(StopWhenGetDmg());
+        //Debug.Log("Pozosta³o HP " + HP) ;
     }
-
+    
     public override void Idle()
     {
     }
@@ -77,11 +82,11 @@ public class EnemyFox : EnemyAbstract
     {
         float minDist = 1.5f;
         float maxDist = 4.5f;
-        float dist = Vector3.Distance(target.position, transform.position);
+        float dist = Vector3.Distance(_targetPlayer.position, transform.position);
 
         if(dist >minDist && dist<maxDist && HitByPlayer == false)
         {
-            agent.SetDestination(target.position);
+            agent.SetDestination(_targetPlayer.position);
         }
         else if( dist > maxDist && HitByPlayer == false)
         {
@@ -92,7 +97,7 @@ public class EnemyFox : EnemyAbstract
             else if( DodgeActive == false)
             {
                 agent.isStopped = false;
-                agent.SetDestination(target.position);
+                agent.SetDestination(_targetPlayer.position);
             }
         }
         if(HitByPlayer == true)
@@ -153,9 +158,9 @@ public class EnemyFox : EnemyAbstract
         {
             DmgSet = Damage;
             DealedDamageToPlayer = true;
+            _targetPlayer.GetComponent<PlayerStats>().HP -= DmgSet;
             yield return new WaitForSeconds(delayedTime);
             DealedDamageToPlayer = false;
-
-        }
+        } 
     }
 }
