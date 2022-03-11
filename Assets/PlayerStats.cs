@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    
-    public float HP  = 100;
+    public float MaxHP = 100;
+    public float HP;
     public float AttackPower { get; set; } = 25;
     public int Level { get; set; }
+    public HealthBar PlayerHealthBar;
 
-   
+
+    private void Start()
+    {
+        HP = MaxHP;
+        PlayerHealthBar.SetMaxHealth(MaxHP);
+    }
 
     private void LateUpdate()
     {
@@ -22,6 +28,7 @@ public class PlayerStats : MonoBehaviour
     public void GetDamage(float damage)
     {
         HP -= damage;
+        PlayerHealthBar.SetHealth(HP);
     }
 
 }

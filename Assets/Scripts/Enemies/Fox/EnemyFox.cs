@@ -6,9 +6,11 @@ using UnityEngine.AI;
 public class EnemyFox : EnemyAbstract
 {
     public override float Cooldown { get; set; }
-    public override float HP { get; set; } = 100f;
+    public override float HP { get; set; }
     public override float Damage { get; set; } = 10f;
     public override float Speed { get; set; } = 1f;
+
+    public float MaxHP = 100;
 
     private Transform _targetPlayer;
 
@@ -21,10 +23,14 @@ public class EnemyFox : EnemyAbstract
     public PlayerStats playerStats;
 
     private NavMeshAgent agent;
+    public HealthBar EnemyHealthBar;
 
    
     private void Awake()
     {
+        HP = MaxHP;
+        EnemyHealthBar.SetMaxHealth(HP);
+
         if(playerStats == null)
         {
             playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
@@ -37,6 +43,7 @@ public class EnemyFox : EnemyAbstract
         StartCoroutine(MoveCoroutine());
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Speed;
+
     }
 
     private void Update()
@@ -74,6 +81,7 @@ public class EnemyFox : EnemyAbstract
     public override void GetDamage(float damage)
     {
         HP -= damage;
+        EnemyHealthBar.SetHealth(HP);
         StartCoroutine(StopWhenGetDmg());
     }
 
