@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MenuPause : MonoBehaviour
 {
@@ -30,8 +31,15 @@ public class MenuPause : MonoBehaviour
         GamePaused = true;
     }
 
+    public void Menu()
+    {
+        Time.timeScale = _normalTime;
+        SceneManager.LoadScene("Menu");
+    }
+
     public void QuitGame()
     {
+        Time.timeScale = _normalTime;
         Application.Quit();
     }
 
