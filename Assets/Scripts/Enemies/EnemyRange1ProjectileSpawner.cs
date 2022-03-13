@@ -11,7 +11,7 @@ public class EnemyRange1ProjectileSpawner : MonoBehaviour
 
     private void Awake()
     {
-        Enemy = GameObject.FindGameObjectWithTag("RangeEnemy1");
+        
     }
 
     void Start()
