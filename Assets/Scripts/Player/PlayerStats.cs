@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class PlayerStats : MonoBehaviour
 {
@@ -8,20 +10,40 @@ public class PlayerStats : MonoBehaviour
     public float HP;
     public float AttackPower { get; set; } = 25;
     public int Level { get; set; }
-    public HealthBar PlayerHealthBar;
+    public HealthBarPlayer PlayerHealthBar;
 
+    public GameObject GameOver;
+
+
+    private void Awake()
+    {
+        HP = PlayerPrefs.GetFloat("ActualHP");
+    }
 
     private void Start()
     {
-        HP = MaxHP;
+
+        if (HP <1)
+        {
+            HP = MaxHP;
+        }
+        //HP = MaxHP;
         PlayerHealthBar.SetMaxHealth(MaxHP);
+        PlayerHealthBar.SetHealth(HP);
+
+        if(GameOver == null)
+        {
+            GameOver = GameObject.Find("GameOverMenu");
+        }
     }
 
     private void LateUpdate()
     {
         if(HP<= 0)
         {
-            Destroy(gameObject);
+            GameOver.SetActive(true);
+            GameOver.GetComponent<GameOverMenu>().GameOver();
+            //Destroy(gameObject);
         }
     }
 
@@ -29,6 +51,7 @@ public class PlayerStats : MonoBehaviour
     {
         HP -= damage;
         PlayerHealthBar.SetHealth(HP);
+        PlayerPrefs.SetFloat("ActualHP", HP);
     }
 
 }

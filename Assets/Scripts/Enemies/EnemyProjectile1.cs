@@ -29,7 +29,7 @@ public class EnemyProjectile1 : MonoBehaviour
         }
         if(RangeEnemy1 == null)
         {
-            RangeEnemy1 = GameObject.Find("Range enemy1");
+            RangeEnemy1 = GameObject.FindGameObjectWithTag("RangeEnemy1");
         }
         if(playerStats == null)
         {

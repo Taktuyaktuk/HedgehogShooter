@@ -9,7 +9,6 @@ public class TimerHolder : MonoBehaviour
 
     public void Update()
     {
-        TimerManager.myTimer += Time.deltaTime;
-        Debug.Log(TimerManager.myTimer);
+        timer = TimerManager.myTimer += Time.deltaTime;
     }
 }

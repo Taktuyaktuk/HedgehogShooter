@@ -9,7 +9,8 @@ public class ExitSceneManager : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Arena2");
+            int SceneIndex = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.LoadScene(SceneIndex +=1);
         }
     }
 }
