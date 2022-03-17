@@ -14,7 +14,8 @@ public class EnemyProjectile1 : MonoBehaviour
 
     private void Awake()
     {
-        rigidbody = this.GetComponent<Rigidbody>();     
+        rigidbody = this.GetComponent<Rigidbody>();   
+        
     }
     private void Start()
     {
@@ -28,7 +29,7 @@ public class EnemyProjectile1 : MonoBehaviour
         }
         if(RangeEnemy1 == null)
         {
-            RangeEnemy1 = GameObject.Find("Range enemy1");
+            RangeEnemy1 = GameObject.FindGameObjectWithTag("RangeEnemy1");
         }
         if(playerStats == null)
         {
@@ -39,6 +40,14 @@ public class EnemyProjectile1 : MonoBehaviour
         TargetPlayer = (Player.transform.position - this.transform.position).normalized;
         rigidbody.AddForce(TargetPlayer * ProjectileSpeed);
         Destroy(this.gameObject, 4f);
+    }
+
+    private void Update()
+    {
+        if (RangeEnemy1 == null)
+        {
+            RangeEnemy1 = GameObject.Find("Range enemy1");
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

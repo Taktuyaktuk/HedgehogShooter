@@ -34,12 +34,14 @@ public class MenuPause : MonoBehaviour
     public void Menu()
     {
         Time.timeScale = _normalTime;
+        TimerManager.myTimer = 0;
         SceneManager.LoadScene("Menu");
     }
 
     public void QuitGame()
     {
         Time.timeScale = _normalTime;
+        TimerManager.myTimer = 0;
         Application.Quit();
     }
 

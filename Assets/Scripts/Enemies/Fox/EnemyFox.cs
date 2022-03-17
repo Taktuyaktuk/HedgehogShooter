@@ -8,7 +8,7 @@ public class EnemyFox : EnemyAbstract
     public override float Cooldown { get; set; }
     public override float HP { get; set; }
     public override float Damage { get; set; } = 10f;
-    public override float Speed { get; set; } = 1f;
+    public override float Speed { get; set; } = 2f;
 
     public float MaxHP = 100;
 
