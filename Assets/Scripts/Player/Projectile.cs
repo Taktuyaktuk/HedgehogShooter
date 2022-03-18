@@ -48,6 +48,10 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyRange1>().GetDamage(DamageDone);
         }
+        if (collision.transform.tag == "RangeEnemy2")
+        {
+            collision.gameObject.GetComponent<EnemyRange2>().GetDamage(DamageDone);
+        }
         Destroy(gameObject);
     }
 }

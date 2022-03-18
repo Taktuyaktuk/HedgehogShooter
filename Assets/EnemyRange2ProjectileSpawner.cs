@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyRange1ProjectileSpawner : MonoBehaviour
+public class EnemyRange2ProjectileSpawner : MonoBehaviour
 {
     Assets.Scripts.Common.ObjectPool.ObjectPooler objectPooler;
     public float RateOfFire { get; set; } = 2.0f;
@@ -14,7 +14,7 @@ public class EnemyRange1ProjectileSpawner : MonoBehaviour
     {
         if (PoolName == "null")
         {
-            PoolName = "RangeEnemy1Projectile";
+            PoolName = "RangeEnemy2ProjectileMulti";
         }
     }
 
@@ -29,7 +29,7 @@ public class EnemyRange1ProjectileSpawner : MonoBehaviour
     }
     private IEnumerator ExecuteAfterTime()
     {
-       
+
         if (_isCoroutineExecuting == true)
         {
             yield break;

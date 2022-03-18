@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - EnemyList
   - RangeEnemy1
+  - RangeEnemy2
   layers:
   - Default
   - TransparentFX

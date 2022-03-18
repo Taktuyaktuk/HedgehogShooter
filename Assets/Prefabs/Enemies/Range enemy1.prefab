@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 7979745749448600311}
+  PoolName: RangeEnemy1Projectile
 --- !u!1 &7979745750025720424
 GameObject:
   m_ObjectHideFlags: 0
