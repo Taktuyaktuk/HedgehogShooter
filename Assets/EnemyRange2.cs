@@ -20,6 +20,8 @@ public class EnemyRange2 : EnemyAbstract
     public bool Attacking;
     public HealthBar EnemyHealthBar;
 
+    public bool ReachDestination;
+
     private void Awake()
     {
         HP = MaxHP;
@@ -29,6 +31,7 @@ public class EnemyRange2 : EnemyAbstract
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Speed;
         Attacking = false;
+        ReachDestination = false;
     }
 
     private void Update()
@@ -68,29 +71,24 @@ public class EnemyRange2 : EnemyAbstract
 
     public override void Move()
     {
-        float maxDist = 8f;
-        float dist = Vector3.Distance(_targetPlayer.position, transform.position);
-
-        if (dist < maxDist)
+        if (ReachDestination == false)
         {
-            agent.isStopped = false;
-            agent.SetDestination((transform.position + ((transform.position - _targetPlayer.position) * 1f)));
-        }
-        else if (dist > maxDist)
-        {
-            agent.isStopped = true;
-        }
-        if (HitByPlayer == true)
-        {
-            agent.isStopped = true;
-        }
-
-        else if (dist > maxDist)
-        {
-            agent.isStopped = false;
-        }
+            StartCoroutine(MoveCoroutine());
+        }    
     }
 
+    public IEnumerator MoveCoroutine()
+    {
+        ReachDestination = true;
+        NavMeshHit hit;   
+        Vector3 randompoint = transform.position + (Random.insideUnitSphere *2);
+        NavMesh.SamplePosition(randompoint, out hit, 10, 1);
+        agent.SetDestination(hit.position);
+
+        yield return new WaitForSeconds(2f);
+        ReachDestination = false;
+        StopCoroutine(MoveCoroutine());
+    }
 
     public override void Respawn()
     {
