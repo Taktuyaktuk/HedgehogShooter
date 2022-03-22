@@ -53,5 +53,10 @@ public class PlayerStats : MonoBehaviour
         PlayerHealthBar.SetHealth(HP);
         PlayerPrefs.SetFloat("ActualHP", HP);
     }
+    public void GetHeal()
+    {
+        PlayerHealthBar.SetHealth(HP);
+        PlayerPrefs.SetFloat("ActualHP", HP);
+    }
 
 }
