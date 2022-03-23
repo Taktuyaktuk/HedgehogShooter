@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7979745749448600313}
   - component: {fileID: 7979745749448600318}
   - component: {fileID: 7979745749448600319}
+  - component: {fileID: -4754290988267653124}
   m_Layer: 8
   m_Name: Range enemy1
   m_TagString: RangeEnemy1
@@ -171,6 +172,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy: {fileID: 7979745749448600311}
   PoolName: RangeEnemy1Projectile
+--- !u!114 &-4754290988267653124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7979745749448600311}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bbb1b19587bb8f459d3bfc2f70bdd05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Loot: {fileID: 5128454538272170209, guid: 9333af8c4445cfb4996d56d75e0d9ed8, type: 3}
 --- !u!1 &7979745750025720424
 GameObject:
   m_ObjectHideFlags: 0
