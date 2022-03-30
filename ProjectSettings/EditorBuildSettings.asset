@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Arena3.unity
     guid: bee73bfb01896654eb2c94652c94af07
   - enabled: 1
-    path: Assets/Scenes/Arena4.unity
+    path: Assets/Scenes/Survive.unity
+    guid: 68533614734056b4eac07488bcc29853
+  - enabled: 1
+    path: Assets/Scenes/ArenaReserve.unity
     guid: c88869c93ea56124da5828a110b7ac6f
   m_configObjects: {}

@@ -29,6 +29,14 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
+    public void Survive()
+    {
+        Time.timeScale = _normalGameSpeed;
+        TimerManager.myTimer = 0;
+        PlayerPrefs.SetFloat("ActualHP", 100f);
+        SceneManager.LoadScene("Survive");
+    }
+
 
     public void QuitGame()
     {
