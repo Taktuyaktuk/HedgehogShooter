@@ -96,7 +96,7 @@ MonoBehaviour:
   snapY: 0
   background: {fileID: 8135886327475159579}
   handle: {fileID: 8135886327784587633}
-  moveThreshold: 1
+  moveThreshold: 100
 --- !u!1 &8135886327475159578
 GameObject:
   m_ObjectHideFlags: 0
