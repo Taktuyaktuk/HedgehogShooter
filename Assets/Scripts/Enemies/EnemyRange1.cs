@@ -19,6 +19,7 @@ public class EnemyRange1 : EnemyAbstract
     public bool HitByPlayer;
     public bool Attacking;
     public HealthBar EnemyHealthBar;
+    public EnemyLoot EnemyLootManager;
 
     private void Awake()
     {
@@ -29,6 +30,10 @@ public class EnemyRange1 : EnemyAbstract
         agent = GetComponent<NavMeshAgent>();
         agent.speed = Speed;
         Attacking = false;
+        if(EnemyLootManager == null)
+        {
+            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
+        }
     }
 
     private void Update()
@@ -51,6 +56,7 @@ public class EnemyRange1 : EnemyAbstract
     {
         if (HP <= 0)
         {
+            EnemyLootManager.LootGenerator(transform.position);
             Destroy(gameObject);
         }
     }

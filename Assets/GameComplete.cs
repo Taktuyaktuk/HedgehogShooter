@@ -41,17 +41,26 @@ public class GameComplete : MonoBehaviour
         float Score3 = PlayerPrefs.GetFloat("ThirdScore");
 
 
-        if (Score < Score1)
+        if (SceneManager.GetActiveScene().buildIndex == 3)
         {
-            PlayerPrefs.SetFloat("BestScore", Score);
+            if (Score < Score1)
+            {
+                PlayerPrefs.SetFloat("BestScore", Score);
+            }
         }
-        else if (Score < Score2 && Score > Score1)
+        if (SceneManager.GetActiveScene().buildIndex == 8)
         {
-            PlayerPrefs.SetFloat("SecondScore", Score);
+            if (Score < Score2)
+            {
+                PlayerPrefs.SetFloat("SecondScore", Score);
+            }
         }
-        else if (Score < Score3 && Score > Score1 && Score > Score2)
+        if (SceneManager.GetActiveScene().buildIndex == 16)
         {
-            PlayerPrefs.SetFloat("ThirdScore", Score);
+            if (Score < Score3)
+            {
+                PlayerPrefs.SetFloat("ThirdScore", Score);
+            }
         }
     }
 

@@ -19,6 +19,7 @@ public class EnemyRange2 : EnemyAbstract
     public bool HitByPlayer;
     public bool Attacking;
     public HealthBar EnemyHealthBar;
+    public EnemyLoot EnemyLootManager;
 
     public bool ReachDestination;
 
@@ -32,6 +33,11 @@ public class EnemyRange2 : EnemyAbstract
         agent.speed = Speed;
         Attacking = false;
         ReachDestination = false;
+
+        if (EnemyLootManager == null)
+        {
+            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
+        }
     }
 
     private void Update()
@@ -54,6 +60,7 @@ public class EnemyRange2 : EnemyAbstract
     {
         if (HP <= 0)
         {
+            EnemyLootManager.LootGenerator(transform.position);
             Destroy(gameObject);
         }
     }

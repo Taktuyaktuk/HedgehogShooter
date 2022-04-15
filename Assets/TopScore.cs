@@ -15,16 +15,63 @@ public class TopScore : MonoBehaviour
     public string Score2;
     public string Score3;
 
+    
+
     private void Update()
     {
+        MaxScore();
+        ScoreDisplay();
+    }
+
+    public void MaxScore()
+    {
+        if (PlayerPrefs.GetFloat("BestScore") == 0)
+        {
+            PlayerPrefs.SetFloat("BestScore", Mathf.Infinity);
+        }
+
+        if (PlayerPrefs.GetFloat("SecondScore") == 0)
+        {
+            PlayerPrefs.SetFloat("SecondScore", Mathf.Infinity);
+        }
+
+        if (PlayerPrefs.GetFloat("ThirdScore") == 0)
+        {
+            PlayerPrefs.SetFloat("ThirdScore", Mathf.Infinity);
+        }
+    }
+
+    public void ScoreDisplay()
+    {
+       
         Score1 = PlayerPrefs.GetFloat("BestScore").ToString();
         Score2 = PlayerPrefs.GetFloat("SecondScore").ToString();
         Score3 = PlayerPrefs.GetFloat("ThirdScore").ToString();
-        TopScorer1.text = ("Your Best Score is : " + Score1);
-        TopScorer2.text = ("Your Second Best Score is : " + Score2);
-        TopScorer3.text = ("Your Third Best Score is : " + Score3);
+
+        if (PlayerPrefs.GetFloat("BestScore") == Mathf.Infinity)
+        {
+            TopScorer1.text = "Complete this Game Mode to show your best Time";
+        }
+        else
+        {
+            TopScorer1.text = ("Your Best Score is : " + Score1);
+        }
+
+        if (PlayerPrefs.GetFloat("SecondScore") == Mathf.Infinity)
+        {
+            TopScorer2.text = "Complete this Game Mode to show your best Time";
+        }
+        else
+        {
+            TopScorer2.text = ("Your Second Best Score is : " + Score2);
+        }
+        if (PlayerPrefs.GetFloat("ThirdScore") == Mathf.Infinity)
+        {
+            TopScorer3.text = "Complete this Game Mode to show your best Time";
+        }
+        else
+        {
+            TopScorer3.text = ("Your Third Best Score is : " + Score3);
+        }
     }
-
-
-
 }
