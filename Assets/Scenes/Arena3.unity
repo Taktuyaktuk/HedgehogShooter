@@ -1113,9 +1113,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: MenuPause, Assembly-CSharp
-        m_MethodName: Resume
+      - m_Target: {fileID: 2076599536}
+        m_TargetAssemblyTypeName: GameOverMenu, Assembly-CSharp
+        m_MethodName: Restart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2469,6 +2469,11 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1024631901}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1123880754 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+  m_PrefabInstance: {fileID: 2087159251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1146881023
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2684,6 +2689,7 @@ Transform:
   - {fileID: 459575846}
   - {fileID: 1728013043}
   - {fileID: 969050063}
+  - {fileID: 1123880754}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4577,7 +4583,65 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameOverMenuUI: {fileID: 0}
   GameOverText: {fileID: 1760471057}
+  SceneNumber: 1
   TimePlayed: 0
+--- !u!1001 &2087159251
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1289785813}
+    m_Modifications:
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293584, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 482588919710293587, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
+      propertyPath: m_Name
+      value: NormalTimeOnStart
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e88239b023f6c824083cb6e1e052ca53, type: 3}
 --- !u!1001 &2143357385
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4776,8 +4840,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2963855385445224645, guid: 644d0cb3e00986b408f5c2d4feab2df2, type: 3}
+      propertyPath: m_ClearFlags
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963855385445224645, guid: 644d0cb3e00986b408f5c2d4feab2df2, type: 3}
       propertyPath: field of view
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963855385445224645, guid: 644d0cb3e00986b408f5c2d4feab2df2, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963855385445224645, guid: 644d0cb3e00986b408f5c2d4feab2df2, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2963855385445224645, guid: 644d0cb3e00986b408f5c2d4feab2df2, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 644d0cb3e00986b408f5c2d4feab2df2, type: 3}
