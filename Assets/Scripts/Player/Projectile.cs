@@ -10,11 +10,13 @@ public class Projectile : MonoBehaviour
     public GameObject Player;
     Rigidbody rigidbody;
     NearestEnemyBehaviour Near;
-    public EnemyFox enemyFox;
+    private bool CouritineActive = false;
+    public GameObject PlayerPosition;
 
     private void Awake()
     {
         rigidbody = this.GetComponent<Rigidbody>();
+        PlayerPosition = GameObject.Find("Player");
     }
     private void Start()
     {
@@ -32,7 +34,7 @@ public class Projectile : MonoBehaviour
         DamageDone = Player.GetComponent<PlayerStats>().AttackPower;
 
         rigidbody.AddForce(Target * ProjectileSpeed);
-        Destroy(this.gameObject, 4f);
+        StartCoroutine(SetInactiveAfterTime());
 
        
     }
@@ -52,6 +54,21 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyRange2>().GetDamage(DamageDone);
         }
-        Destroy(gameObject);
+        this.gameObject.transform.position = PlayerPosition.transform.position;
+        this.gameObject.SetActive(false);
+    }
+
+    IEnumerator SetInactiveAfterTime()
+    {
+        if (CouritineActive)
+        {
+            int time = 4;
+            CouritineActive = true;
+            yield return new WaitForSeconds(time);
+            this.gameObject.SetActive(false);
+            this.gameObject.transform.position = PlayerPosition.transform.position;
+            CouritineActive = false;
+            StopAllCoroutines();
+        }
     }
 }
