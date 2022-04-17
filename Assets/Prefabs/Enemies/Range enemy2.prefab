@@ -335,6 +335,7 @@ MonoBehaviour:
   HitByPlayer: 0
   Attacking: 0
   EnemyHealthBar: {fileID: 8183347909714293199}
+  EnemyLootManager: {fileID: 0}
   ReachDestination: 0
 --- !u!114 &8183347910479011608
 MonoBehaviour:
@@ -349,7 +350,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 8183347910479011609}
-  PoolName: RangeEnemy2ProjectileMulti
+  PoolNameCenter: RangeEnemy2ProjectileCenter
+  PoolNameLeft: RangeEnemy2ProjectileLeft
+  PoolNameRight: RangeEnemy2ProjectileRight
 --- !u!1 &8183347910545962098
 GameObject:
   m_ObjectHideFlags: 0

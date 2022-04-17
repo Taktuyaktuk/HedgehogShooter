@@ -1023,13 +1023,19 @@ MonoBehaviour:
   Pools:
   - Tag: PlayersProjectile
     Prefab: {fileID: 1795190130135979721, guid: e8b7c6bfe0f827248a0147b75904be54, type: 3}
-    Size: 1000
+    Size: 50
   - Tag: RangeEnemy1Projectile
     Prefab: {fileID: 8147471710087649359, guid: 505a9a5dc3b25314980c6b054aa4be55, type: 3}
-    Size: 2000
-  - Tag: RangeEnemy2ProjectileMulti
-    Prefab: {fileID: 5448656390199888660, guid: 6bacac846a3eeb94a99d61989afda646, type: 3}
-    Size: 6000
+    Size: 100
+  - Tag: RangeEnemy2ProjectileCenter
+    Prefab: {fileID: 7048671183057288099, guid: 289e5f2dd4566ee48aa8b8e7fb4f6982, type: 3}
+    Size: 60
+  - Tag: RangeEnemy2ProjectileLeft
+    Prefab: {fileID: 7612776069804860671, guid: 021ddc68e393cc14f9f8942ed04516cd, type: 3}
+    Size: 60
+  - Tag: RangeEnemy2ProjectileRight
+    Prefab: {fileID: 2720605454804055836, guid: f924024406053ac44a4f65e745a84ce2, type: 3}
+    Size: 60
 --- !u!1 &460176317
 GameObject:
   m_ObjectHideFlags: 0

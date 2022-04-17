@@ -8,14 +8,25 @@ public class EnemyRange2ProjectileSpawner : MonoBehaviour
     public float RateOfFire { get; set; } = 2.0f;
     private bool _isCoroutineExecuting { get; set; } = false;
     public GameObject Enemy;
-    public string PoolName;
+    public string PoolNameCenter;
+    public string PoolNameLeft;
+    public string PoolNameRight;
 
     private void Awake()
     {
-        if (PoolName == "null")
+        if (PoolNameCenter == "null")
         {
-            PoolName = "RangeEnemy2ProjectileMulti";
+            PoolNameCenter = "RangeEnemy2ProjectileCenter";
         }
+        if (PoolNameLeft == "null")
+        {
+            PoolNameLeft = "RangeEnemy2ProjectileLeft";
+        }
+        if (PoolNameRight == "null")
+        {
+            PoolNameRight = "RangeEnemy2ProjectileRight";
+        }
+
     }
 
     void Start()
@@ -36,7 +47,9 @@ public class EnemyRange2ProjectileSpawner : MonoBehaviour
         }
 
         _isCoroutineExecuting = true;
-        objectPooler.SpawnFromPool(PoolName, Enemy.transform.position, Quaternion.identity);
+        objectPooler.SpawnFromPool(PoolNameCenter, Enemy.transform.position, Quaternion.identity);
+        objectPooler.SpawnFromPool(PoolNameLeft, Enemy.transform.position, Quaternion.identity);
+        objectPooler.SpawnFromPool(PoolNameRight, Enemy.transform.position, Quaternion.identity);
         yield return new WaitForSeconds(RateOfFire);
         _isCoroutineExecuting = false;
     }
