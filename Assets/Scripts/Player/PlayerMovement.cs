@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] public Rigidbody _rigidbody;
-    [SerializeField] private DynamicJoystick _joystick;
+    [SerializeField] 
+    public Rigidbody _rigidbody;
+    [SerializeField] 
+    private DynamicJoystick _joystick;
 
-    [SerializeField] private float _moveSpeed;
+    [SerializeField] 
+    public float _moveSpeed;
 
     private void FixedUpdate()
     {

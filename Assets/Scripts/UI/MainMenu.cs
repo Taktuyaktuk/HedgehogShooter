@@ -31,9 +31,10 @@ public class MainMenu : MonoBehaviour
 
     public void Survive()
     {
+        int HpSurvive = (100 + PlayerPrefs.GetInt("HPBonus"));
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
-        PlayerPrefs.SetFloat("ActualHP", 100f);
+        PlayerPrefs.SetFloat("ActualHP", HpSurvive);
         SceneManager.LoadScene("Survive");
     }
 

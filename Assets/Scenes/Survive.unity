@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerStats: {fileID: 68120377}
+  PlayerMovement: {fileID: 1715162627}
 --- !u!114 &68120377 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 241194781613283948, guid: 5d157aed821f02843b623005b1c11de8, type: 3}
@@ -3928,6 +3929,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ba0d0e7a039f526499c356a3c5cd6d3f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1715162627 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 241194781613283950, guid: 5d157aed821f02843b623005b1c11de8, type: 3}
+  m_PrefabInstance: {fileID: 241194781914422982}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac7547929ac135c418d87dbf37b31862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1719033775

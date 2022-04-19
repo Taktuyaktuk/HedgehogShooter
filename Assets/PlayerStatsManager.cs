@@ -6,11 +6,12 @@ public class PlayerStatsManager : MonoBehaviour
 {
     [SerializeField]
     public PlayerStats PlayerStats;
+    [SerializeField]
+    public PlayerMovement PlayerMovement;
     void Start()
     {
-        PlayerStats.AttackPower += 25;
-        PlayerStats.MaxHP += 1000;
-        
+        PlayerStats.AttackPower += PlayerPrefs.GetInt("ATKBonus");
+        PlayerStats.MaxHP += PlayerPrefs.GetInt("HPBonus");
+        PlayerMovement._moveSpeed += PlayerPrefs.GetFloat("SpeedBonus");
     }
-  
 }
