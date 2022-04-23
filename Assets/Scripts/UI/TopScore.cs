@@ -10,10 +10,12 @@ public class TopScore : MonoBehaviour
     public TextMeshProUGUI TopScorer1;
     public TextMeshProUGUI TopScorer2;
     public TextMeshProUGUI TopScorer3;
+    public TextMeshProUGUI TopSurvive;
 
     public string Score1;
     public string Score2;
     public string Score3;
+    public string ScoreSurvive;
 
     
 
@@ -47,10 +49,13 @@ public class TopScore : MonoBehaviour
         Score1 = PlayerPrefs.GetFloat("BestScore").ToString();
         Score2 = PlayerPrefs.GetFloat("SecondScore").ToString();
         Score3 = PlayerPrefs.GetFloat("ThirdScore").ToString();
+        ScoreSurvive = PlayerPrefs.GetInt("WaveRecord").ToString();
+        string textToGameModes = "Complete this Game Mode to show your best Time";
+        string textToSurvive = "Play Survive Mode to show your best Wave reached";
 
         if (PlayerPrefs.GetFloat("BestScore") == Mathf.Infinity)
         {
-            TopScorer1.text = "Complete this Game Mode to show your best Time";
+            TopScorer1.text = textToGameModes;
         }
         else
         {
@@ -59,7 +64,7 @@ public class TopScore : MonoBehaviour
 
         if (PlayerPrefs.GetFloat("SecondScore") == Mathf.Infinity)
         {
-            TopScorer2.text = "Complete this Game Mode to show your best Time";
+            TopScorer2.text = textToGameModes;
         }
         else
         {
@@ -67,11 +72,20 @@ public class TopScore : MonoBehaviour
         }
         if (PlayerPrefs.GetFloat("ThirdScore") == Mathf.Infinity)
         {
-            TopScorer3.text = "Complete this Game Mode to show your best Time";
+            TopScorer3.text = textToGameModes;
         }
         else
         {
             TopScorer3.text = ("Your Third Best Score is : " + Score3);
+        }
+
+        if (PlayerPrefs.GetInt("WaveRecord") == 0)
+        {
+            TopSurvive.text = textToSurvive;
+        }
+        else
+        {
+            TopSurvive.text = ("Your best Wave reached is : " + ScoreSurvive);
         }
     }
 }

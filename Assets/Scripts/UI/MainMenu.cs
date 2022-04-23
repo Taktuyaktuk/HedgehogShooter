@@ -46,8 +46,10 @@ public class MainMenu : MonoBehaviour
 
     public void ResetTopScores()
     {
+        int reset = 0;
         PlayerPrefs.SetFloat("BestScore", Mathf.Infinity);
         PlayerPrefs.SetFloat("SecondScore", Mathf.Infinity);
         PlayerPrefs.SetFloat("ThirdScore", Mathf.Infinity);
+        PlayerPrefs.SetInt("WaveRecord", reset);
     }
 }

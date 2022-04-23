@@ -12,6 +12,7 @@ public class EnemyRange2 : EnemyAbstract
     public float MaxHP = 120;
 
     private Transform _targetPlayer;
+    [SerializeField]
     private NavMeshAgent agent;
 
     public bool DodgeActive;
