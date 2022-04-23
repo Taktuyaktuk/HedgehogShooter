@@ -24,8 +24,9 @@ public class EnemyFox : EnemyAbstract
 
     private NavMeshAgent agent;
     public HealthBar EnemyHealthBar;
+    public EnemyLoot EnemyLootManager;
 
-   
+
     private void Awake()
     {
         HP = MaxHP;
@@ -34,6 +35,11 @@ public class EnemyFox : EnemyAbstract
         if(playerStats == null)
         {
             playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        }
+
+        if (EnemyLootManager == null)
+        {
+            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
         }
 
         HitByPlayer = false;
@@ -74,6 +80,8 @@ public class EnemyFox : EnemyAbstract
     {
         if (HP <= 0)
         {
+            Vector3 coinPosition = new Vector3(0, 0, -0.5f);
+            EnemyLootManager.CoinLootGenerator(transform.position + coinPosition);
             Destroy(gameObject);
         }
     }

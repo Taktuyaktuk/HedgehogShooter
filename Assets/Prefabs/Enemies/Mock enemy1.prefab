@@ -234,6 +234,7 @@ MonoBehaviour:
   DealedDamageToPlayer: 0
   playerStats: {fileID: 0}
   EnemyHealthBar: {fileID: 7096308173840189860}
+  EnemyLootManager: {fileID: 0}
 --- !u!195 &7096308173417573978
 NavMeshAgent:
   m_ObjectHideFlags: 0

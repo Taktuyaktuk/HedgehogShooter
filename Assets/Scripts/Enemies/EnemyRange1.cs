@@ -57,6 +57,8 @@ public class EnemyRange1 : EnemyAbstract
         if (HP <= 0)
         {
             EnemyLootManager.LootGenerator(transform.position);
+            Vector3 coinPosition = new Vector3(0, 0, -0.5f);
+            EnemyLootManager.CoinLootGenerator(transform.position + coinPosition);
             Destroy(gameObject);
         }
     }

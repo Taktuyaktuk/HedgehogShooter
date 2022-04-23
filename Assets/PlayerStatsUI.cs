@@ -8,6 +8,8 @@ public class PlayerStatsUI : MonoBehaviour
     public TextMeshProUGUI HealthPoints;
     public TextMeshProUGUI AtackPower;
     public TextMeshProUGUI Speed;
+    public TextMeshProUGUI Coins;
+
 
     //public string Score1;
     //public string Score2;
@@ -17,13 +19,14 @@ public class PlayerStatsUI : MonoBehaviour
     public int AtackPowerBonus;
     public float SpeedBonus;
 
-    public int coins;
+    private int _coins;
 
     private void Awake()
     {
         HealthPointsBonus = PlayerPrefs.GetInt("HPBonus");
         AtackPowerBonus = PlayerPrefs.GetInt("ATKBonus");
         SpeedBonus = PlayerPrefs.GetFloat("SpeedBonus");
+        _coins = PlayerPrefs.GetInt("Coins");
     }
 
     public void Update()
@@ -31,7 +34,7 @@ public class PlayerStatsUI : MonoBehaviour
         HealthPointsBonus = PlayerPrefs.GetInt("HPBonus");
         AtackPowerBonus = PlayerPrefs.GetInt("ATKBonus");
         SpeedBonus = PlayerPrefs.GetFloat("SpeedBonus");
-
+        _coins = PlayerPrefs.GetInt("Coins");
     }
 
     private void LateUpdate()
@@ -47,17 +50,55 @@ public class PlayerStatsUI : MonoBehaviour
 
     public void HPUPButton()
     {
-        HealthPointsBonus += 10;
-        PlayerPrefs.SetInt("HPBonus", HealthPointsBonus);
+        if (_coins >= 10)
+        {
+            HealthPointsBonus += 10;
+            PlayerPrefs.SetInt("HPBonus", HealthPointsBonus);
+            _coins -= 10;
+            PlayerPrefs.SetInt("Coins", _coins);
+        }
+        else
+        {
+            StartCoroutine(ChangeCoinsColor());
+        }
     }
     public void AtackPowerButton()
     {
-        AtackPowerBonus += 1;
-        PlayerPrefs.SetInt("ATKBonus", AtackPowerBonus);
+        if (_coins >= 10)
+        {
+            AtackPowerBonus += 1;
+            PlayerPrefs.SetInt("ATKBonus", AtackPowerBonus);
+            _coins -= 10;
+            PlayerPrefs.SetInt("Coins", _coins);
+        }
+        else
+        {
+            StartCoroutine(ChangeCoinsColor());
+        }
     }
     public void SpeedButton()
     {
-        SpeedBonus += 0.1f;
-        PlayerPrefs.SetFloat("SpeedBonus", SpeedBonus);
+        if (_coins >= 10)
+        {
+            SpeedBonus += 0.1f;
+            PlayerPrefs.SetFloat("SpeedBonus", SpeedBonus);
+            _coins -= 10;
+            PlayerPrefs.SetInt("Coins", _coins);
+        }
+        else
+        {
+            StartCoroutine(ChangeCoinsColor());
+        }
+    }
+
+    IEnumerator ChangeCoinsColor()
+    {
+        float time = 0.7f;
+        Coins.fontSize = 40;
+        Coins.faceColor = new Color32(245, 10, 13, 255);
+        yield return new WaitForSeconds(time);
+        Coins.fontSize = 30;
+        Coins.faceColor = new Color32(245, 181, 13, 255);
+        StopAllCoroutines();
     }
 }
