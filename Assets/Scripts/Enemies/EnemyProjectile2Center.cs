@@ -73,7 +73,6 @@ public class EnemyProjectile2Center : MonoBehaviour
         Physics.IgnoreLayerCollision(9, 8);
         Physics.IgnoreLayerCollision(7, 9);
         Physics.IgnoreLayerCollision(9, 9);
-        Physics.IgnoreLayerCollision(9, 10);
     }
 
     private void Shooting()

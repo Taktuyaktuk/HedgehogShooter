@@ -13,6 +13,10 @@ public class PlayerStats : MonoBehaviour
     public HealthBarPlayer PlayerHealthBar;
 
     public GameObject GameOver;
+    [SerializeField]
+    private GameObject _psHit;
+    [SerializeField]
+    private GameObject _psHeal;
 
 
     private void Awake()
@@ -52,11 +56,13 @@ public class PlayerStats : MonoBehaviour
         HP -= damage;
         PlayerHealthBar.SetHealth(HP);
         PlayerPrefs.SetFloat("ActualHP", HP);
+        Instantiate(_psHit, transform.position, Quaternion.identity);
     }
     public void GetHeal()
     {
         PlayerHealthBar.SetHealth(HP);
         PlayerPrefs.SetFloat("ActualHP", HP);
+        Instantiate(_psHeal, transform.position, Quaternion.identity);
     }
 
 }

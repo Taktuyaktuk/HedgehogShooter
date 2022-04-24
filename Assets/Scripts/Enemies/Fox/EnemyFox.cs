@@ -26,42 +26,19 @@ public class EnemyFox : EnemyAbstract
     public HealthBar EnemyHealthBar;
     public EnemyLoot EnemyLootManager;
 
+    [SerializeField]
+    private GameObject _psHitEnemy;
+
 
     private void Awake()
     {
-        HP = MaxHP;
-        EnemyHealthBar.SetMaxHealth(HP);
-
-        if(playerStats == null)
-        {
-            playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        }
-
-        if (EnemyLootManager == null)
-        {
-            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
-        }
-
-        HitByPlayer = false;
-        InAttackRange = false;
-        DealedDamageToPlayer = false;
-        _targetPlayer = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Transform>();
-        StartCoroutine(MoveCoroutine());
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = Speed;
-
+        SafetyForNulls();
+        SafetyOnAwake();
     }
 
     private void Update()
     {
-        if (InAttackRange)
-        {
-            StartCoroutine(DealDamage());
-        }
-        else
-        {
-            StopCoroutine(DealDamage());
-        }
+        InAtackRange();
         Move();
         Die();  
     }
@@ -90,6 +67,7 @@ public class EnemyFox : EnemyAbstract
     {
         HP -= damage;
         EnemyHealthBar.SetHealth(HP);
+        Instantiate(_psHitEnemy, transform.position, Quaternion.identity);
         StartCoroutine(StopWhenGetDmg());
     }
 
@@ -182,5 +160,46 @@ public class EnemyFox : EnemyAbstract
             yield return new WaitForSeconds(delayedTime);
             DealedDamageToPlayer = false;
         } 
+    }
+
+    public void SafetyForNulls()
+    {
+        if (playerStats == null)
+        {
+            playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        }
+
+        if (EnemyLootManager == null)
+        {
+            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
+        }
+
+        if (_psHitEnemy == null)
+        {
+            _psHitEnemy = GameObject.Find("PS_HitEnemy");
+        }
+        _targetPlayer = GameObject.FindGameObjectWithTag(Tags.Player.ToString()).GetComponent<Transform>();
+        agent = GetComponent<NavMeshAgent>();
+    }
+    public void SafetyOnAwake()
+    {
+        HP = MaxHP;
+        EnemyHealthBar.SetMaxHealth(HP);
+        HitByPlayer = false;
+        InAttackRange = false;
+        DealedDamageToPlayer = false;
+        StartCoroutine(MoveCoroutine());
+        agent.speed = Speed;
+    }
+    public void InAtackRange()
+    {
+        if (InAttackRange)
+        {
+            StartCoroutine(DealDamage());
+        }
+        else
+        {
+            StopCoroutine(DealDamage());
+        }
     }
 }

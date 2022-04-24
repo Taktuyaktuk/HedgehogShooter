@@ -20,6 +20,6 @@ public class EnemyLoot : MonoBehaviour
 
     public void CoinLootGenerator (Vector3 EnemyPos)
     {
-        Instantiate(LootCoin, EnemyPos, this.transform.rotation);
+        Instantiate(LootCoin, EnemyPos, Quaternion.identity);
     }
 }

@@ -21,19 +21,23 @@ public class EnemyRange1 : EnemyAbstract
     public HealthBar EnemyHealthBar;
     public EnemyLoot EnemyLootManager;
 
+    [SerializeField]
+    private GameObject _psHitEnemy;
+
     private void Awake()
     {
-        HP = MaxHP;
-        EnemyHealthBar.SetMaxHealth(HP);
+        OnAwake();
+        //HP = MaxHP;
+        //EnemyHealthBar.SetMaxHealth(HP);
 
-        _targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = Speed;
-        Attacking = false;
-        if(EnemyLootManager == null)
-        {
-            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
-        }
+        //_targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        //agent = GetComponent<NavMeshAgent>();
+        //agent.speed = Speed;
+        //Attacking = false;
+        //if(EnemyLootManager == null)
+        //{
+        //    EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
+        //}
     }
 
     private void Update()
@@ -67,6 +71,7 @@ public class EnemyRange1 : EnemyAbstract
     {
         HP -= damage;
         EnemyHealthBar.SetHealth(HP);
+        Instantiate(_psHitEnemy,transform.position, Quaternion.identity);
     }
 
     public override void Idle()
@@ -103,5 +108,20 @@ public class EnemyRange1 : EnemyAbstract
     public override void Respawn()
     {
         
+    }
+
+    public void OnAwake()
+    {
+        HP = MaxHP;
+        EnemyHealthBar.SetMaxHealth(HP);
+
+        _targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Speed;
+        Attacking = false;
+        if (EnemyLootManager == null)
+        {
+            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
+        }
     }
 }

@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHP: 120
+  agent: {fileID: 0}
   DodgeActive: 0
   DmgGet: 0
   HitByPlayer: 0
@@ -337,6 +338,7 @@ MonoBehaviour:
   EnemyHealthBar: {fileID: 8183347909714293199}
   EnemyLootManager: {fileID: 0}
   ReachDestination: 0
+  _psHitEnemy: {fileID: 5712950576793044247, guid: 28ca31fb3ac3d0045ab3c7d0cd6369d0, type: 3}
 --- !u!114 &8183347910479011608
 MonoBehaviour:
   m_ObjectHideFlags: 0

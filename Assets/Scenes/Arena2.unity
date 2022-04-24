@@ -4579,6 +4579,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1289785813}
     m_Modifications:
+    - target: {fileID: 5523234962786534194, guid: 15d0778f4bd1f1547b59f554d6f685a7, type: 3}
+      propertyPath: LootCoin
+      value: 
+      objectReference: {fileID: 8748846852610820890, guid: ef906ce80395e9d4896f75af64364d0c, type: 3}
     - target: {fileID: 5523234962786534195, guid: 15d0778f4bd1f1547b59f554d6f685a7, type: 3}
       propertyPath: m_RootOrder
       value: 3

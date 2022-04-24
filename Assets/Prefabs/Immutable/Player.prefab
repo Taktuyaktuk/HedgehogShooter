@@ -316,7 +316,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 8
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
@@ -429,6 +429,8 @@ MonoBehaviour:
   HP: 100
   PlayerHealthBar: {fileID: 241194781372845740}
   GameOver: {fileID: 0}
+  _psHit: {fileID: 5712950576793044247, guid: 0e44583e5359f944088995112edac31a, type: 3}
+  _psHeal: {fileID: 5712950576793044247, guid: c2f6a427c507b61459b259e0fc816f79, type: 3}
 --- !u!1 &241194781726212180
 GameObject:
   m_ObjectHideFlags: 0
