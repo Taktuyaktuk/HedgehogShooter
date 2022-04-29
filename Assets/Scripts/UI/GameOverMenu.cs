@@ -12,7 +12,8 @@ public class GameOverMenu : MonoBehaviour
     private float _normalTime = 1f;
     private float _stoppedTime = 0f;
     public TextMeshProUGUI GameOverText;
-    public int SceneNumber;
+    [SerializeField]
+    private string _sceneToRestart;
 
     public float TimePlayed;
 
@@ -28,7 +29,7 @@ public class GameOverMenu : MonoBehaviour
         _gameOverMenuUI.SetActive(false);
         Time.timeScale = _normalTime;
         GamePaused = false;
-        SceneManager.LoadScene(SceneNumber);
+        SceneManager.LoadScene(_sceneToRestart);
     }
     public void GameOver()
     {

@@ -10,7 +10,6 @@ public class CountDownTimer : MonoBehaviour
     private int _enemyCount;
     private bool _countDownIsRunning;
 
-
     private void Awake()
     {
         _enemyCount = GameObject.Find("---------Enemies---------").GetComponentsInChildren<Transform>().Length;

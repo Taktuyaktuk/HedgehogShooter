@@ -27,17 +27,6 @@ public class EnemyRange1 : EnemyAbstract
     private void Awake()
     {
         OnAwake();
-        //HP = MaxHP;
-        //EnemyHealthBar.SetMaxHealth(HP);
-
-        //_targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        //agent = GetComponent<NavMeshAgent>();
-        //agent.speed = Speed;
-        //Attacking = false;
-        //if(EnemyLootManager == null)
-        //{
-        //    EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
-        //}
     }
 
     private void Update()

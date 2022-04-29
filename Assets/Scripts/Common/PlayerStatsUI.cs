@@ -10,16 +10,17 @@ public class PlayerStatsUI : MonoBehaviour
     public TextMeshProUGUI Speed;
     public TextMeshProUGUI Coins;
 
-
-    //public string Score1;
-    //public string Score2;
-    //public string Score3;
-
     public int HealthPointsBonus;
     public int AtackPowerBonus;
     public float SpeedBonus;
 
     private int _coins;
+    [SerializeField]
+    private AudioSource _successCoinSound;
+    [SerializeField]
+    private AudioSource _failSound;
+
+
 
     private void Awake()
     {
@@ -42,16 +43,13 @@ public class PlayerStatsUI : MonoBehaviour
         HealthPoints.text = HealthPointsBonus.ToString();
         AtackPower.text = AtackPowerBonus.ToString();
         Speed.text = SpeedBonus.ToString();
-
-        //PlayerPrefs.SetInt("HPBonus", 0);
-        //PlayerPrefs.SetInt("ATKBonus", 0);
-        //PlayerPrefs.SetFloat("SpeedBonus", 0f);
     }
 
     public void HPUPButton()
     {
         if (_coins >= 10)
         {
+            _successCoinSound.Play();
             HealthPointsBonus += 10;
             PlayerPrefs.SetInt("HPBonus", HealthPointsBonus);
             _coins -= 10;
@@ -59,6 +57,7 @@ public class PlayerStatsUI : MonoBehaviour
         }
         else
         {
+            _failSound.Play();
             StartCoroutine(ChangeCoinsColor());
         }
     }
@@ -66,6 +65,7 @@ public class PlayerStatsUI : MonoBehaviour
     {
         if (_coins >= 10)
         {
+            _successCoinSound.Play();
             AtackPowerBonus += 1;
             PlayerPrefs.SetInt("ATKBonus", AtackPowerBonus);
             _coins -= 10;
@@ -73,6 +73,7 @@ public class PlayerStatsUI : MonoBehaviour
         }
         else
         {
+            _failSound.Play();
             StartCoroutine(ChangeCoinsColor());
         }
     }
@@ -80,6 +81,7 @@ public class PlayerStatsUI : MonoBehaviour
     {
         if (_coins >= 10)
         {
+            _successCoinSound.Play();
             SpeedBonus += 0.1f;
             PlayerPrefs.SetFloat("SpeedBonus", SpeedBonus);
             _coins -= 10;
@@ -87,6 +89,7 @@ public class PlayerStatsUI : MonoBehaviour
         }
         else
         {
+            _failSound.Play();
             StartCoroutine(ChangeCoinsColor());
         }
     }
@@ -94,6 +97,8 @@ public class PlayerStatsUI : MonoBehaviour
     IEnumerator ChangeCoinsColor()
     {
         float time = 0.7f;
+        float timescale = 1f;
+        Time.timeScale = timescale;
         Coins.fontSize = 40;
         Coins.faceColor = new Color32(245, 10, 13, 255);
         yield return new WaitForSeconds(time);

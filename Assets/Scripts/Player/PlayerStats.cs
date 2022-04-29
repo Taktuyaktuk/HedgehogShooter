@@ -17,6 +17,12 @@ public class PlayerStats : MonoBehaviour
     private GameObject _psHit;
     [SerializeField]
     private GameObject _psHeal;
+    [SerializeField]
+    private AudioSource _healSound;
+    [SerializeField]
+    private AudioSource _getDamageSound;
+
+
 
 
     private void Awake()
@@ -57,12 +63,14 @@ public class PlayerStats : MonoBehaviour
         PlayerHealthBar.SetHealth(HP);
         PlayerPrefs.SetFloat("ActualHP", HP);
         Instantiate(_psHit, transform.position, Quaternion.identity);
+        _getDamageSound.Play();
     }
     public void GetHeal()
     {
         PlayerHealthBar.SetHealth(HP);
         PlayerPrefs.SetFloat("ActualHP", HP);
         Instantiate(_psHeal, transform.position, Quaternion.identity);
+        _healSound.Play();
     }
 
 }

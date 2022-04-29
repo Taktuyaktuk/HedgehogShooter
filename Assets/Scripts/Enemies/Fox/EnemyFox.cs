@@ -8,13 +8,12 @@ public class EnemyFox : EnemyAbstract
     public override float Cooldown { get; set; }
     public override float HP { get; set; }
     public override float Damage { get; set; } = 10f;
-    public override float Speed { get; set; } = 2f;
+    public override float Speed { get; set; } = 0f;
 
     public float MaxHP = 100;
 
     private Transform _targetPlayer;
 
-    public bool DodgeActive;
     public float DmgGet;
     public float DmgSet = 10;
     public bool HitByPlayer;
@@ -79,24 +78,19 @@ public class EnemyFox : EnemyAbstract
     public override void Move()
     {
         float minDist = 1.5f;
-        float maxDist = 4.5f;
+        float maxDist = 6f;
         float dist = Vector3.Distance(_targetPlayer.position, transform.position);
 
         if(dist >minDist && dist<maxDist && HitByPlayer == false)
         {
+            agent.speed = 2;
             agent.SetDestination(_targetPlayer.position);
         }
         else if( dist > maxDist && HitByPlayer == false)
         {
-            if (DodgeActive == true)
-            {
-                agent.isStopped = true;
-            }
-            else if( DodgeActive == false)
-            {
-                agent.isStopped = false;
-                agent.SetDestination(_targetPlayer.position);
-            }
+
+            agent.speed = 5;
+            agent.SetDestination(_targetPlayer.position);
         }
         if(HitByPlayer == true)
         {
@@ -108,7 +102,7 @@ public class EnemyFox : EnemyAbstract
             InAttackRange = true;
             Attack();
         }
-        else if( dist>minDist && DodgeActive==false )
+        else if( dist>minDist )
         {
             agent.isStopped = false;
             InAttackRange = false;
@@ -123,10 +117,8 @@ public class EnemyFox : EnemyAbstract
     public IEnumerator MoveCoroutine()
     {
         float delayedTime = 3f;
-        DodgeActive = false;
         HitByPlayer = false;
         yield return new WaitForSeconds(delayedTime);
-        DodgeActive = true;
         StopCoroutine(MoveCoroutine());
         StartCoroutine(Stop());
     }

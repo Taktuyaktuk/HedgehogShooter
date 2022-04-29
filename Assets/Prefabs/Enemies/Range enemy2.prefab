@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 8183347910479011604}
   - component: {fileID: 8183347910479011600}
   - component: {fileID: 8183347910479011611}
-  - component: {fileID: 8183347910479011608}
+  - component: {fileID: 2423233560828599816}
   m_Layer: 8
   m_Name: Range enemy2
   m_TagString: RangeEnemy2
@@ -315,7 +315,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8183347910479011611
 MonoBehaviour:
@@ -339,7 +339,7 @@ MonoBehaviour:
   EnemyLootManager: {fileID: 0}
   ReachDestination: 0
   _psHitEnemy: {fileID: 5712950576793044247, guid: 28ca31fb3ac3d0045ab3c7d0cd6369d0, type: 3}
---- !u!114 &8183347910479011608
+--- !u!114 &2423233560828599816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

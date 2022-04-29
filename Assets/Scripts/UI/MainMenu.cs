@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Arena1Easy");
     }
 
     public void PlayGameMedium()
@@ -19,14 +19,14 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Arena1Medium");
     }
     public void PlayGameHard()
     {
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Arena1Hard");
     }
 
     public void Survive()

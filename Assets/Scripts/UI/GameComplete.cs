@@ -12,6 +12,9 @@ public class GameComplete : MonoBehaviour
     private float _normalTime = 1f;
     private float _stoppedTime = 0f;
     public TextMeshProUGUI GameOverText;
+    public TextMeshProUGUI ExtraCoins;
+    [SerializeField]
+    private int _extraCoins;
 
     public float TimePlayed;
 
@@ -30,6 +33,10 @@ public class GameComplete : MonoBehaviour
         PlayerPrefs.SetFloat("LastTimePlayed", TimePlayed);
         TopScores(TimePlayed);
         GameOverText.text = ("Congratulation! You Complete all levels on this difficulty, your time is " + TimePlayed);
+        ExtraCoins.text = (" You get extra Coins : " + _extraCoins);
+        int coins = PlayerPrefs.GetInt("Coins");
+        coins += _extraCoins;
+        PlayerPrefs.SetInt("Coins", coins);
 
     }
     public void TopScores(float score)
@@ -48,14 +55,14 @@ public class GameComplete : MonoBehaviour
                 PlayerPrefs.SetFloat("BestScore", Score);
             }
         }
-        if (SceneManager.GetActiveScene().buildIndex == 8)
+        if (SceneManager.GetActiveScene().buildIndex == 7)
         {
             if (Score < Score2)
             {
                 PlayerPrefs.SetFloat("SecondScore", Score);
             }
         }
-        if (SceneManager.GetActiveScene().buildIndex == 16)
+        if (SceneManager.GetActiveScene().buildIndex == 12)
         {
             if (Score < Score3)
             {

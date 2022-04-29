@@ -5,12 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class ExitSceneManager : MonoBehaviour
 {
+    [SerializeField]
+    private string _sceneName;
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            int SceneIndex = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.LoadScene(SceneIndex +=1);
+            SceneManager.LoadScene(_sceneName);
         }
     }
 }

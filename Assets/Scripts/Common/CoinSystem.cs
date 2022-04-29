@@ -10,16 +10,12 @@ public class CoinSystem : MonoBehaviour
     private Transform _coinTarget;
     private Rigidbody _rb;
     private bool _coinAdded;
+    [SerializeField]
+    private AudioSource _cashInSound;
 
     private void Awake()
     {
-        if (_coinTarget == null)
-        {
-            _coinTarget = GameObject.Find("CoinTarget").GetComponent<Transform>();
-        }
-        
-        _rb = this.GetComponent<Rigidbody>();
-        _coinAdded = false;
+        OnAwake();
     }
     private void Start()
     {
@@ -27,6 +23,21 @@ public class CoinSystem : MonoBehaviour
     }
 
     private void Update()
+    {
+        AddingCoins();
+    }
+    public void OnAwake()
+    {
+        if (_coinTarget == null)
+        {
+            _coinTarget = GameObject.Find("CoinTarget").GetComponent<Transform>();
+        }
+
+        _rb = this.GetComponent<Rigidbody>();
+        _coinAdded = false;
+    }
+
+    public void AddingCoins()
     {
         _enemyCount = GameObject.Find("---------Enemies---------").GetComponentsInChildren<Transform>().Length;
 
@@ -37,10 +48,11 @@ public class CoinSystem : MonoBehaviour
             coins += 1;
             var target = _coinTarget.position - this.transform.position;
             _rb.AddForce(target * _power);
+            _cashInSound.Play();
             PlayerPrefs.SetInt("Coins", coins);
         }
 
-        if(_coinAdded == true)
+        if (_coinAdded == true)
         {
             Destroy(gameObject, 0.5f);
         }
