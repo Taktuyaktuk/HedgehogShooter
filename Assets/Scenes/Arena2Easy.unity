@@ -1366,6 +1366,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8183347910479011600, guid: 0814c2a40dec2c54f8dcc65bd7cf6d99, type: 3}
+      propertyPath: m_Constraints
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8183347910479011604, guid: 0814c2a40dec2c54f8dcc65bd7cf6d99, type: 3}
+      propertyPath: m_AngularSpeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8183347910479011606, guid: 0814c2a40dec2c54f8dcc65bd7cf6d99, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4639,7 +4647,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameOverMenuUI: {fileID: 0}
   GameOverText: {fileID: 1760471057}
-  _sceneToRestart: 
+  _sceneToRestart: Arena1Easy
   TimePlayed: 0
 --- !u!1001 &2116876927
 PrefabInstance:
@@ -4755,6 +4763,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7096308173417573977, guid: 904d9f5812be1874cbe831cc7c8b5066, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7096308173417573978, guid: 904d9f5812be1874cbe831cc7c8b5066, type: 3}
+      propertyPath: m_AngularSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7096308173664563031, guid: 904d9f5812be1874cbe831cc7c8b5066, type: 3}

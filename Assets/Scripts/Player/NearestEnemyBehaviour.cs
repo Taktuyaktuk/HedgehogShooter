@@ -9,7 +9,7 @@ public class NearestEnemyBehaviour : MonoBehaviour
     public List<Transform> EnemyList;
     public Transform NearestEnemy { get; set; }
 
-    public int ActiveEnemy;/*{ get; set; }*/
+    public int ActiveEnemy;
     public GameObject Enemies;
 
 
@@ -24,19 +24,10 @@ public class NearestEnemyBehaviour : MonoBehaviour
             EnemyList.Add(child);
             ActiveEnemy++;
         }
-
-        //GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-        //foreach(var enemy in ListOfEnemy)
-        //{
-        //    EnemyList.Add(enemy.transform);
-        //    ActiveEnemy++;
-        //}
     }
 
     private void Update()
     {
-        //if (ActiveEnemy != EnemyList.Count)
-        //{
             ActiveEnemy = 0;
             EnemyList.Clear();
             int enemy = Enemies.transform.childCount;
@@ -46,19 +37,6 @@ public class NearestEnemyBehaviour : MonoBehaviour
             EnemyList.Add(child);
             ActiveEnemy++;
             }
-        //}
-
-        //GameObject[] ListOfEnemy = GameObject.FindGameObjectsWithTag("Enemy");
-        //if ( ActiveEnemy != ListOfEnemy.Length)
-        //{
-        //    ActiveEnemy = 0;
-        //    EnemyList.Clear();
-        //    foreach (var enemy in ListOfEnemy)
-        //    {
-        //        EnemyList.Add(enemy.transform);
-        //        ActiveEnemy++;
-        //    }
-        //}
     }
     private void OnEnable()
     {

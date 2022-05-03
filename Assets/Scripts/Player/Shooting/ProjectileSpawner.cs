@@ -6,7 +6,7 @@ public class ProjectileSpawner : MonoBehaviour
 {
 
     Assets.Scripts.Common.ObjectPool.ObjectPooler objectPooler;
-    public float RateOfFire { get; set; } = 1.0f;
+    public float RateOfFire { get; set; } = 0.9f;
     public GameObject GhostJoystick;
     private List<Transform> _projectile;
     private bool _isCoroutineExecuting { get; set; } = false;

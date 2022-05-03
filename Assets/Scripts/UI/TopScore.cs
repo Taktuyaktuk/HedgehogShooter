@@ -21,26 +21,7 @@ public class TopScore : MonoBehaviour
 
     private void Update()
     {
-        MaxScore();
         ScoreDisplay();
-    }
-
-    public void MaxScore()
-    {
-        if (PlayerPrefs.GetFloat("BestScore") == 0)
-        {
-            PlayerPrefs.SetFloat("BestScore", Mathf.Infinity);
-        }
-
-        if (PlayerPrefs.GetFloat("SecondScore") == 0)
-        {
-            PlayerPrefs.SetFloat("SecondScore", Mathf.Infinity);
-        }
-
-        if (PlayerPrefs.GetFloat("ThirdScore") == 0)
-        {
-            PlayerPrefs.SetFloat("ThirdScore", Mathf.Infinity);
-        }
     }
 
     public void ScoreDisplay()

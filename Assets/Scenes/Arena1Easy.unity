@@ -4436,7 +4436,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gameOverMenuUI: {fileID: 0}
   GameOverText: {fileID: 1760471057}
-  SceneNumber: 1
+  _sceneToRestart: Arena1Easy
   TimePlayed: 0
 --- !u!1001 &2143357385
 PrefabInstance:
