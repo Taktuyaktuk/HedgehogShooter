@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Arena1Easy");
     }
 
     public void PlayGameMedium()
@@ -19,21 +19,22 @@ public class MainMenu : MonoBehaviour
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Arena1Medium");
     }
     public void PlayGameHard()
     {
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Arena1Hard");
     }
 
     public void Survive()
     {
+        int HpSurvive = (100 + PlayerPrefs.GetInt("HPBonus"));
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
-        PlayerPrefs.SetFloat("ActualHP", 100f);
+        PlayerPrefs.SetFloat("ActualHP", HpSurvive);
         SceneManager.LoadScene("Survive");
     }
 
@@ -45,8 +46,10 @@ public class MainMenu : MonoBehaviour
 
     public void ResetTopScores()
     {
+        int reset = 0;
         PlayerPrefs.SetFloat("BestScore", Mathf.Infinity);
         PlayerPrefs.SetFloat("SecondScore", Mathf.Infinity);
         PlayerPrefs.SetFloat("ThirdScore", Mathf.Infinity);
+        PlayerPrefs.SetInt("WaveRecord", reset);
     }
 }

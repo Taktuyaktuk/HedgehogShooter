@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 7096308173417573980}
   - component: {fileID: 7096308173417573979}
   - component: {fileID: 7096308173417573978}
+  - component: {fileID: 5361992411956498498}
   m_Layer: 8
   m_Name: Mock enemy1
   m_TagString: Enemy
@@ -174,7 +175,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
   m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
+  m_RenderingLayerMask: 512
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
@@ -233,6 +234,8 @@ MonoBehaviour:
   DealedDamageToPlayer: 0
   playerStats: {fileID: 0}
   EnemyHealthBar: {fileID: 7096308173840189860}
+  EnemyLootManager: {fileID: 0}
+  _psHitEnemy: {fileID: 5712950576793044247, guid: 28ca31fb3ac3d0045ab3c7d0cd6369d0, type: 3}
 --- !u!195 &7096308173417573978
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -255,6 +258,22 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!54 &5361992411956498498
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7096308173417573976}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7096308173664563030
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,7 +8,7 @@ public class EnemyRange1 : EnemyAbstract
     public override float Damage { get; set; } = 10;
     public override float HP { get; set; }
     public override float Cooldown { get; set; }
-    public override float Speed { get; set; } = 1;
+    public override float Speed { get; set; } = 2;
     public float MaxHP = 70;
 
     private Transform _targetPlayer;
@@ -21,19 +21,12 @@ public class EnemyRange1 : EnemyAbstract
     public HealthBar EnemyHealthBar;
     public EnemyLoot EnemyLootManager;
 
+    [SerializeField]
+    private GameObject _psHitEnemy;
+
     private void Awake()
     {
-        HP = MaxHP;
-        EnemyHealthBar.SetMaxHealth(HP);
-
-        _targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
-        agent = GetComponent<NavMeshAgent>();
-        agent.speed = Speed;
-        Attacking = false;
-        if(EnemyLootManager == null)
-        {
-            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
-        }
+        OnAwake();
     }
 
     private void Update()
@@ -57,6 +50,8 @@ public class EnemyRange1 : EnemyAbstract
         if (HP <= 0)
         {
             EnemyLootManager.LootGenerator(transform.position);
+            Vector3 coinPosition = new Vector3(0, 0, -0.5f);
+            EnemyLootManager.CoinLootGenerator(transform.position + coinPosition);
             Destroy(gameObject);
         }
     }
@@ -65,6 +60,7 @@ public class EnemyRange1 : EnemyAbstract
     {
         HP -= damage;
         EnemyHealthBar.SetHealth(HP);
+        Instantiate(_psHitEnemy,transform.position, Quaternion.identity);
     }
 
     public override void Idle()
@@ -101,5 +97,20 @@ public class EnemyRange1 : EnemyAbstract
     public override void Respawn()
     {
         
+    }
+
+    public void OnAwake()
+    {
+        HP = MaxHP;
+        EnemyHealthBar.SetMaxHealth(HP);
+
+        _targetPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        agent = GetComponent<NavMeshAgent>();
+        agent.speed = Speed;
+        Attacking = false;
+        if (EnemyLootManager == null)
+        {
+            EnemyLootManager = GameObject.Find("LootManager").GetComponent<EnemyLoot>();
+        }
     }
 }

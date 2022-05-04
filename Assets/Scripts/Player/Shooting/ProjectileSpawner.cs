@@ -6,10 +6,11 @@ public class ProjectileSpawner : MonoBehaviour
 {
 
     Assets.Scripts.Common.ObjectPool.ObjectPooler objectPooler;
-    public float RateOfFire { get; set; } = 1.0f;
+    public float RateOfFire { get; set; } = 0.9f;
     public GameObject GhostJoystick;
     private List<Transform> _projectile;
     private bool _isCoroutineExecuting { get; set; } = false;
+    public AudioSource Shoot;
 
     private void Awake()
     {
@@ -46,6 +47,7 @@ public class ProjectileSpawner : MonoBehaviour
 
         _isCoroutineExecuting = true;
         objectPooler.SpawnFromPool("PlayersProjectile", transform.position, Quaternion.identity);
+        Shoot.Play();
         yield return new WaitForSeconds(RateOfFire);
         _isCoroutineExecuting = false;
     }

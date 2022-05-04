@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 8183347910479011604}
   - component: {fileID: 8183347910479011600}
   - component: {fileID: 8183347910479011611}
-  - component: {fileID: 8183347910479011608}
+  - component: {fileID: 2423233560828599816}
   m_Layer: 8
   m_Name: Range enemy2
   m_TagString: RangeEnemy2
@@ -292,7 +292,7 @@ NavMeshAgent:
   m_Speed: 3.5
   m_Acceleration: 8
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 0
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
@@ -315,7 +315,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
 --- !u!114 &8183347910479011611
 MonoBehaviour:
@@ -330,13 +330,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHP: 120
+  agent: {fileID: 0}
   DodgeActive: 0
   DmgGet: 0
   HitByPlayer: 0
   Attacking: 0
   EnemyHealthBar: {fileID: 8183347909714293199}
+  EnemyLootManager: {fileID: 0}
   ReachDestination: 0
---- !u!114 &8183347910479011608
+  _psHitEnemy: {fileID: 5712950576793044247, guid: 28ca31fb3ac3d0045ab3c7d0cd6369d0, type: 3}
+--- !u!114 &2423233560828599816
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -349,7 +352,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Enemy: {fileID: 8183347910479011609}
-  PoolName: RangeEnemy2ProjectileMulti
+  PoolNameCenter: RangeEnemy2ProjectileCenter
+  PoolNameLeft: RangeEnemy2ProjectileLeft
+  PoolNameRight: RangeEnemy2ProjectileRight
 --- !u!1 &8183347910545962098
 GameObject:
   m_ObjectHideFlags: 0

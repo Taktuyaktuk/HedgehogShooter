@@ -8,33 +8,31 @@ public class Projectile : MonoBehaviour
     public float DamageDone;
     public Vector3 Target;
     public GameObject Player;
-    Rigidbody rigidbody;
+    Rigidbody rb;
     NearestEnemyBehaviour Near;
-    public EnemyFox enemyFox;
+    private bool _couritineActive = false;
+    private bool _haveVelocity;
+    public GameObject PlayerPosition;
 
     private void Awake()
     {
-        rigidbody = this.GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
+        PlayerPosition = GameObject.Find("Player");
     }
     private void Start()
     {
         Physics.IgnoreLayerCollision(6, 7);
         Player = GameObject.Find("Player");
-        Near = Player.GetComponent<NearestEnemyBehaviour>();
-        try
+        Shooting();
+        
+    }
+    private void Update()
+    {
+        if(_haveVelocity == false)
         {
-            Target = (Near.NearestEnemy.transform.position - transform.position).normalized;
+            _haveVelocity = true;
+            Shooting();
         }
-        catch
-        {
-
-        }
-        DamageDone = Player.GetComponent<PlayerStats>().AttackPower;
-
-        rigidbody.AddForce(Target * ProjectileSpeed);
-        Destroy(this.gameObject, 4f);
-
-       
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -52,6 +50,41 @@ public class Projectile : MonoBehaviour
         {
             collision.gameObject.GetComponent<EnemyRange2>().GetDamage(DamageDone);
         }
-        Destroy(gameObject);
+        this.gameObject.transform.position = PlayerPosition.transform.position;
+        _haveVelocity = false;
+        this.gameObject.SetActive(false);
+        rb.velocity = Vector3.zero;
+    }
+
+    private void Shooting()
+    {
+        Near = Player.GetComponent<NearestEnemyBehaviour>();
+        try
+        {
+            Target = (Near.NearestEnemy.transform.position - transform.position).normalized;
+        }
+        catch
+        {
+
+        }
+        DamageDone = Player.GetComponent<PlayerStats>().AttackPower;
+
+        rb.AddForce(Target * ProjectileSpeed);
+        _haveVelocity = true;
+        StartCoroutine(SetInactiveAfterTime());
+    }
+    IEnumerator SetInactiveAfterTime()
+    {
+        if (_couritineActive == false)
+        {
+            int time = 4;
+            _couritineActive = true;
+            yield return new WaitForSeconds(time);
+            this.gameObject.transform.position = PlayerPosition.transform.position;
+            this.gameObject.SetActive(false);
+            rb.velocity = Vector3.zero;
+            _couritineActive = false;
+            StopAllCoroutines();
+        }
     }
 }

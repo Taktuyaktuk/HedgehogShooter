@@ -11,8 +11,15 @@ public class PlayerStats : MonoBehaviour
     public float AttackPower { get; set; } = 25;
     public int Level { get; set; }
     public HealthBarPlayer PlayerHealthBar;
-
     public GameObject GameOver;
+    [SerializeField]
+    private GameObject _psHit;
+    [SerializeField]
+    private GameObject _psHeal;
+    [SerializeField]
+    private AudioSource _healSound;
+    [SerializeField]
+    private AudioSource _getDamageSound;
 
 
     private void Awake()
@@ -27,7 +34,6 @@ public class PlayerStats : MonoBehaviour
         {
             HP = MaxHP;
         }
-        //HP = MaxHP;
         PlayerHealthBar.SetMaxHealth(MaxHP);
         PlayerHealthBar.SetHealth(HP);
 
@@ -43,7 +49,6 @@ public class PlayerStats : MonoBehaviour
         {
             GameOver.SetActive(true);
             GameOver.GetComponent<GameOverMenu>().GameOver();
-            //Destroy(gameObject);
         }
     }
 
@@ -52,11 +57,17 @@ public class PlayerStats : MonoBehaviour
         HP -= damage;
         PlayerHealthBar.SetHealth(HP);
         PlayerPrefs.SetFloat("ActualHP", HP);
+        GameObject CurrentPsEffect = Instantiate(_psHit, transform.position, Quaternion.identity);
+        CurrentPsEffect.transform.parent = this.transform;
+        _getDamageSound.Play();
     }
     public void GetHeal()
     {
         PlayerHealthBar.SetHealth(HP);
         PlayerPrefs.SetFloat("ActualHP", HP);
+        GameObject CurrentPsEffect = Instantiate(_psHeal, transform.position, Quaternion.identity);
+        CurrentPsEffect.transform.parent = this.transform;
+        _healSound.Play();
     }
 
 }

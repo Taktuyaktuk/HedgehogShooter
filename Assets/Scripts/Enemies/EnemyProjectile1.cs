@@ -8,47 +8,33 @@ public class EnemyProjectile1 : MonoBehaviour
     public Vector3 TargetPlayer;
     public GameObject Player;
     public GameObject RangeEnemy1;
-    Rigidbody rigidbody;
+    Rigidbody rb;
     public PlayerStats playerStats;
     private float _enemyDamage;
+    private bool _couritineActive;
+    private bool _haveVelocity;
 
     private void Awake()
     {
-        rigidbody = this.GetComponent<Rigidbody>();   
-        
+        rb = this.GetComponent<Rigidbody>();
+
     }
     private void Start()
     {
-        
-        Physics.IgnoreLayerCollision(9, 8);
-        Physics.IgnoreLayerCollision(7, 9);
-        Physics.IgnoreLayerCollision(9, 9);
-        Physics.IgnoreLayerCollision(9, 10);
 
-        if (Player == null)
-        {
-           Player = GameObject.Find("Player"); 
-        }
-        if(RangeEnemy1 == null)
-        {
-            RangeEnemy1 = GameObject.FindGameObjectWithTag("RangeEnemy1");
-        }
-        if(playerStats == null)
-        {
-            playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
-        }
-
-        _enemyDamage = RangeEnemy1.GetComponent<EnemyRange1>().Damage;
-        TargetPlayer = (Player.transform.position - this.transform.position).normalized;
-        rigidbody.AddForce(TargetPlayer * ProjectileSpeed);
-        Destroy(this.gameObject, 4f);
+        IgnoreCollisions();
+        SafetyChecker();
+        Shooting();
     }
 
     private void Update()
     {
-        if (RangeEnemy1 == null)
+        SafetyChecker();
+
+        if(_haveVelocity == false)
         {
-            RangeEnemy1 = GameObject.Find("Range enemy1");
+            _haveVelocity = true;
+            Shooting();
         }
     }
 
@@ -56,10 +42,61 @@ public class EnemyProjectile1 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            playerStats.GetDamage (_enemyDamage);
-            Destroy(this.gameObject);
+            playerStats.GetDamage(_enemyDamage);
+            this.gameObject.SetActive(false);
+            rb.velocity = Vector3.zero;
+            _haveVelocity = false;
         }
-        Destroy(this.gameObject);
-        
+        this.gameObject.SetActive(false);
+        rb.velocity = Vector3.zero;
+        _haveVelocity = false;
+
+    }
+
+    private void IgnoreCollisions()
+    {
+        Physics.IgnoreLayerCollision(9, 8);
+        Physics.IgnoreLayerCollision(7, 9);
+        Physics.IgnoreLayerCollision(9, 9);
+    }
+
+    private void SafetyChecker()
+    {
+        if (Player == null)
+        {
+            Player = GameObject.Find("Player");
+        }
+        if (RangeEnemy1 == null)
+        {
+            RangeEnemy1 = GameObject.FindGameObjectWithTag("RangeEnemy1");
+        }
+        if (playerStats == null)
+        {
+            playerStats = GameObject.Find("Player").GetComponent<PlayerStats>();
+        }
+    }
+
+    private void Shooting()
+    {
+        _enemyDamage = RangeEnemy1.GetComponent<EnemyRange1>().Damage;
+        TargetPlayer = (Player.transform.position - this.transform.position).normalized;
+        rb.AddForce(TargetPlayer * ProjectileSpeed);
+        _haveVelocity = true;
+        StartCoroutine(SetInactiveAfterTime());
+    }
+
+    IEnumerator SetInactiveAfterTime()
+    {
+        if (_couritineActive == false)
+        {
+            int time = 4;
+            _couritineActive = true;
+            yield return new WaitForSeconds(time);
+            this.gameObject.SetActive(false);
+            rb.velocity = Vector3.zero;
+            _haveVelocity = false;
+            _couritineActive = false;
+            StopAllCoroutines();
+        }
     }
 }
