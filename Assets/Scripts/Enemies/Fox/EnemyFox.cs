@@ -10,7 +10,7 @@ public class EnemyFox : EnemyAbstract
     public override float Damage { get; set; } = 10f;
     public override float Speed { get; set; } = 0f;
 
-    public float MaxHP = 100;
+    public float MaxHP;
 
     private Transform _targetPlayer;
 
@@ -175,6 +175,11 @@ public class EnemyFox : EnemyAbstract
     }
     public void SafetyOnAwake()
     {
+        int baseMaxHp = 100;
+        int baseDamage = 10;
+
+        MaxHP = baseMaxHp + PlayerPrefs.GetFloat("EnemiesPowerUp");
+        Damage = baseDamage + PlayerPrefs.GetFloat("EnemiesPowerUp");
         HP = MaxHP;
         EnemyHealthBar.SetMaxHealth(HP);
         HitByPlayer = false;

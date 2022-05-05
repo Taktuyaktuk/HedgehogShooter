@@ -33,9 +33,9 @@ public class NearestEnemyBehaviour : MonoBehaviour
             int enemy = Enemies.transform.childCount;
             for(int i =0; i < enemy; i++ )
             {
-                Transform child = Enemies.transform.GetChild(i);
-            EnemyList.Add(child);
-            ActiveEnemy++;
+             Transform child = Enemies.transform.GetChild(i);
+             EnemyList.Add(child);
+             ActiveEnemy++;
             }
     }
     private void OnEnable()

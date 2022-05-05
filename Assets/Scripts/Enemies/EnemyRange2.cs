@@ -9,7 +9,7 @@ public class EnemyRange2 : EnemyAbstract
     public override float HP { get; set; }
     public override float Cooldown { get; set; }
     public override float Speed { get; set; } = 1;
-    public float MaxHP = 120;
+    public float MaxHP;
 
     private Transform _targetPlayer;
     [SerializeField]
@@ -99,6 +99,12 @@ public class EnemyRange2 : EnemyAbstract
 
     public void OnAwake()
     {
+        int baseMaxHp = 120;
+        int baseDamage = 8;
+
+        MaxHP = baseMaxHp + PlayerPrefs.GetFloat("EnemiesPowerUp");
+        Damage = baseDamage + PlayerPrefs.GetFloat("EnemiesPowerUp");
+
         HP = MaxHP;
         EnemyHealthBar.SetMaxHealth(HP);
 

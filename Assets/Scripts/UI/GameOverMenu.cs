@@ -26,6 +26,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void Restart()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         _gameOverMenuUI.SetActive(false);
         Time.timeScale = _normalTime;
         GamePaused = false;
@@ -33,6 +34,7 @@ public class GameOverMenu : MonoBehaviour
     }
     public void GameOver()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         _gameOverMenuUI.SetActive(true);
         Time.timeScale = _stoppedTime;
         GamePaused = true;
@@ -44,6 +46,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void Menu()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         Time.timeScale = _normalTime;
         TimerManager.myTimer = 0;
         SceneManager.LoadScene("Menu");
@@ -51,6 +54,7 @@ public class GameOverMenu : MonoBehaviour
 
     public void QuitGame()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         Time.timeScale = _normalTime;
         TimerManager.myTimer = 0;
         Application.Quit();

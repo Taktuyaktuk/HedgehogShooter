@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour
     private float _normalGameSpeed = 1f;
     public void PlayGameEasy()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
@@ -16,6 +17,7 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGameMedium()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
@@ -23,6 +25,7 @@ public class MainMenu : MonoBehaviour
     }
     public void PlayGameHard()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;
         PlayerPrefs.SetFloat("ActualHP", 100f);
@@ -31,6 +34,7 @@ public class MainMenu : MonoBehaviour
 
     public void Survive()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         int HpSurvive = (100 + PlayerPrefs.GetInt("HPBonus"));
         Time.timeScale = _normalGameSpeed;
         TimerManager.myTimer = 0;

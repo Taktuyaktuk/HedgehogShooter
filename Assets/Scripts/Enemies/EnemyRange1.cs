@@ -8,8 +8,8 @@ public class EnemyRange1 : EnemyAbstract
     public override float Damage { get; set; } = 10;
     public override float HP { get; set; }
     public override float Cooldown { get; set; }
-    public override float Speed { get; set; } = 2;
-    public float MaxHP = 70;
+    public override float Speed { get; set; } = 1;
+    public float MaxHP;
 
     private Transform _targetPlayer;
     private NavMeshAgent agent;
@@ -101,6 +101,11 @@ public class EnemyRange1 : EnemyAbstract
 
     public void OnAwake()
     {
+        int baseMaxHp = 70;
+        int baseDamage = 10;
+
+        MaxHP = baseMaxHp + PlayerPrefs.GetFloat("EnemiesPowerUp");
+        Damage = baseDamage + PlayerPrefs.GetFloat("EnemiesPowerUp");
         HP = MaxHP;
         EnemyHealthBar.SetMaxHealth(HP);
 
