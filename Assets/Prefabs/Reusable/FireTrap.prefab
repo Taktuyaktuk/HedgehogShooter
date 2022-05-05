@@ -68,6 +68,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8290205497379780063}
     m_Modifications:
+    - target: {fileID: 3572332852272230088, guid: 71018cc6a4824f14b99bb4c9839c9386, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572332852272230090, guid: 71018cc6a4824f14b99bb4c9839c9386, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572332852272230090, guid: 71018cc6a4824f14b99bb4c9839c9386, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3572332852654632000, guid: 71018cc6a4824f14b99bb4c9839c9386, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -111,6 +123,10 @@ PrefabInstance:
     - target: {fileID: 3572332852654632000, guid: 71018cc6a4824f14b99bb4c9839c9386, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3572332852654632001, guid: 71018cc6a4824f14b99bb4c9839c9386, type: 3}
+      propertyPath: InitialModule.maxNumParticles
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 3572332852654632007, guid: 71018cc6a4824f14b99bb4c9839c9386, type: 3}
       propertyPath: m_Name
