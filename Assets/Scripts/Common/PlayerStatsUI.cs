@@ -42,7 +42,7 @@ public class PlayerStatsUI : MonoBehaviour
     {
         HealthPoints.text = HealthPointsBonus.ToString();
         AtackPower.text = AtackPowerBonus.ToString();
-        Speed.text = SpeedBonus.ToString();
+        Speed.text = SpeedBonus.ToString("0.#");
     }
 
     public void HPUPButton()
