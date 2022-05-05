@@ -33,6 +33,7 @@ public class MenuPause : MonoBehaviour
 
     public void Menu()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         Time.timeScale = _normalTime;
         TimerManager.myTimer = 0;
         SceneManager.LoadScene("Menu");
@@ -40,6 +41,7 @@ public class MenuPause : MonoBehaviour
 
     public void QuitGame()
     {
+        PlayerPrefs.SetFloat("EnemiesPowerUp", 0);
         Time.timeScale = _normalTime;
         TimerManager.myTimer = 0;
         Application.Quit();

@@ -6,7 +6,7 @@ public class WaveRecordChecker : MonoBehaviour
 {
     private WaveSpawner _wave;
     [SerializeField]
-    private int _currentWave;
+    public int _currentWave;
 
     private void Awake()
     {
