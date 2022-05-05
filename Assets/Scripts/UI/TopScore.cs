@@ -27,9 +27,9 @@ public class TopScore : MonoBehaviour
     public void ScoreDisplay()
     {
        
-        Score1 = PlayerPrefs.GetFloat("BestScore").ToString();
-        Score2 = PlayerPrefs.GetFloat("SecondScore").ToString();
-        Score3 = PlayerPrefs.GetFloat("ThirdScore").ToString();
+        Score1 = PlayerPrefs.GetFloat("BestScore").ToString("0.###");
+        Score2 = PlayerPrefs.GetFloat("SecondScore").ToString("0.###");
+        Score3 = PlayerPrefs.GetFloat("ThirdScore").ToString("0.###");
         ScoreSurvive = PlayerPrefs.GetInt("WaveRecord").ToString();
         string textToGameModes = "Complete this Game Mode to show your best Time";
         string textToSurvive = "Play Survive Mode to show your best Wave reached";
@@ -40,7 +40,7 @@ public class TopScore : MonoBehaviour
         }
         else
         {
-            TopScorer1.text = ("Your Best Score is : " + Score1);
+            TopScorer1.text = ("Your Best Time is : " + Score1);
         }
 
         if (PlayerPrefs.GetFloat("SecondScore") == Mathf.Infinity)
@@ -49,7 +49,7 @@ public class TopScore : MonoBehaviour
         }
         else
         {
-            TopScorer2.text = ("Your Second Best Score is : " + Score2);
+            TopScorer2.text = ("Your Best Time is : " + Score2);
         }
         if (PlayerPrefs.GetFloat("ThirdScore") == Mathf.Infinity)
         {
@@ -57,7 +57,7 @@ public class TopScore : MonoBehaviour
         }
         else
         {
-            TopScorer3.text = ("Your Third Best Score is : " + Score3);
+            TopScorer3.text = ("Your Best Time is : " + Score3);
         }
 
         if (PlayerPrefs.GetInt("WaveRecord") == 0)
